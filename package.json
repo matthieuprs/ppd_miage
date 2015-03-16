@@ -28,6 +28,7 @@
     "npm": "1.3.x"
   },
   "scripts": {
-    "start": "keystone.js"
+    "start": "keystone.js",
+    "test": "node test/testrunner.js"
   }
 }
