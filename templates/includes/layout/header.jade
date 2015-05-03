@@ -4,15 +4,16 @@ header(id='header', role='banner', class=(section == 'home' ? 'header--home' : '
 		//- Site logo + site nav trigger button (on mobile)
 		.navbar-header
 			a(href='/', title='Back to Home').site-branding
-				include /public/images/logo.svg
+				img(src='/images/logoMiage.png')
 			//- User avatar
 			if user
 				a(href='/me').user.visible-xs
+
 					img(src=(user.photo.exists ? user._.photo.thumbnail(60,60) : user.gravatarUrl || '/images/avatar.png'), width=27).img-circle
 			//- Patty
 			a#site-nav-toggle(href='javascript:;').site-nav-toggle
 				.patty
-				
+
 		#site-nav
 			nav(role='navigation')
 				ul.navbar-nav.navbar-nav--left

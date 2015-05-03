@@ -36,7 +36,8 @@ User.add({
 	twitter: { type: String, width: 'short' },
 	website: { type: Types.Url },
 	bio: { type: Types.Markdown },
-	gravatar: { type: String, noedit: true }
+	gravatar: { type: String, noedit: true },
+	groupes : {type : Types.Relationship, label : 'Groupes suivis' , ref: 'Organisation', many : true}
 },'Education', {
 	type: { type: Types.Select, Label : 'Type', options: ['Professeur', 'Etudiant']},
 	statutEnCours: { type: String, label: 'Statut en cours', dependsOn: { type: 'Etudiant'}   },

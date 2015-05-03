@@ -14,8 +14,8 @@ var Organisation = new keystone.List('Organisation', {
 Organisation.add({
 	name: { type: String, index: true },
 	logo: { type: Types.CloudinaryImage },
+	author: { type: Types.Relationship, ref: 'User',label : 'Creator', index: true },
 	website: Types.Url,
-	isHiring: Boolean,
 	description: { type: Types.Markdown },
 	location: Types.Location
 });
