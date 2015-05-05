@@ -21,8 +21,12 @@ block content
 							img(src=(member.photo.exists ? member._.photo.thumbnail(600,600) : member.avatarUrl || '/images/avatar.png'), alt=member.name.full).img-responsive.img-rounded
 						.col-sm-9
 							h1.mb-0= member.name.full
+
+							if member.bio.html
+								!= member.bio.html
+
 							p.text-muted.mv-1 Member since #{moment(member.createdOn).format('MMMM YYYY')}
-							if twitterUsername || githubUsername || facebookUsername || googleUsername
+							if twitterUsername || githubUsername || facebookUsername
 								.member__accounts.mb-1
 									if twitterUsername
 										a(href='https://twitter.com/' + twitterUsername, target='_blank', data-toggle='tooltip', data-title='@' + twitterUsername, data-placement='top').member__account.member__account--twitter.btn.btn-default
@@ -36,7 +40,7 @@ block content
 										a(href='https://facebook.com/' + facebookUsername, target='_blank', data-toggle='tooltip', data-title=facebookUsername, data-placement='top').member__account.member__account--facebook.btn.btn-default
 											span.entypo-social.entypo-facebook
 											=facebookUsername
-						
+
 							if member.bio.html
 								!= member.bio.html
 				if member.talks && member.talks.length
