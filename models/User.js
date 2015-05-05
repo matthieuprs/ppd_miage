@@ -39,9 +39,11 @@ User.add({
 	gravatar: { type: String, noedit: true },
 	groupes : {type : Types.Relationship, label : 'Groupes suivis' , ref: 'Organisation', many : true}
 },'Education', {
-	type: { type: Types.Select, Label : 'Type', options: ['Professeur', 'Etudiant']},
-	statutEnCours: { type: String, label: 'Statut en cours', dependsOn: { type: 'Etudiant'}   },
+	type: { type: Types.Select, Label : 'Type', options: ['Professeur', 'Etudiant','Ancien']},
 	formation : { type: Types.Select, label : 'Formation',options: ['L3', 'M1', 'M2'],dependsOn: { type: 'Etudiant'} },
+	universite : { type: String, width: 'short', label : 'Université'},
+	entreprise : { type: String, width: 'short', label : 'Entreprise',dependsOn: { type: ['Etudiant','Ancien']} },
+	fonction : { type: String, width: 'short', label : 'Fonction',dependsOn: { type: ['Etudiant','Ancien']} }
 },'Détails', {
 	adress: { type: Types.Location , label : 'Adresse' },
 	birthDate: { type: Types.Date, label : 'Date de naissance'},
