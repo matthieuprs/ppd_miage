@@ -2,6 +2,7 @@ extends ../../layouts/default
 
   block content
     .container
+      h1.page-title=data.category ? data.category.name : 'Groupe'
         each orga in orgas
           orga.name
 
