@@ -5,7 +5,7 @@ include ../../mixins/organiser
 block intro
 	.page-intro: .container
 		h1.page-title About
-		p.lead Every 3rd Wednesday of the month you'll find us talking about what we're doing and what's happening around us in the world of JavaScript.
+		p.lead Every 3rd Friday of the month you'll find us talking about what we're doing and what's happening around us in the world of JavaScript.
 		p.lead SydJS wouldn't be possible without our organisers:
 
 block content
@@ -17,8 +17,8 @@ block content
 				each org in organisers
 					.col-sm-3
 						+organiser(org)
-			
-		
+
+
 		//- CODE
 		.section: .container-sm
 			h2 Code of Conduct
