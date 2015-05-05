@@ -19,7 +19,7 @@ exports = module.exports = function(req, res) {
 
   view.on('init', function(next) {
 
-    keystone.list('Organisation').model.find().where('author',res.locals.user.id).exec(function(err, orgas) {
+    keystone.list('Organisation').model.find().where('author',res.locals.user.id).populate('author').exec(function(err, orgas) {
 
       console.log(res.locals.user.id);
 
@@ -28,9 +28,16 @@ exports = module.exports = function(req, res) {
       }
 
       locals.orgas = orgas;
+      console.log(locals.orgas.author);
+
       console.log(locals.orgas);
       next();
     });
+
+    keystone.list('Organisation').model.findOne().populate('author').exec(function(err, post) {
+      console.log(post.author.name);
+    });
+
   });
 
   // Render the view

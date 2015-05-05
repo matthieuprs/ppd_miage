@@ -3,6 +3,8 @@ extends ../../layouts/default
 block content
   .container
       each orga in orgas
-        p #{orga.name}
+        h1 #{orga.name}
+        p #{orga.author.name.first}  #{orga.author.name.last}
+        div!= orga.description.html
 
 block js
