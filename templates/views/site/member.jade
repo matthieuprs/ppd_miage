@@ -22,7 +22,7 @@ block content
 						.col-sm-9
 							h1.mb-0= member.name.full
 							p.text-muted.mv-1 Member since #{moment(member.createdOn).format('MMMM YYYY')}
-							if twitterUsername || githubUsername
+							if twitterUsername || githubUsername || facebookUsername || googleUsername
 								.member__accounts.mb-1
 									if twitterUsername
 										a(href='https://twitter.com/' + twitterUsername, target='_blank', data-toggle='tooltip', data-title='@' + twitterUsername, data-placement='top').member__account.member__account--twitter.btn.btn-default
@@ -32,6 +32,11 @@ block content
 										a(href='https://github.com/' + githubUsername, target='_blank', data-toggle='tooltip', data-title=githubUsername, data-placement='top').member__account.member__account--github.btn.btn-default
 											span.entypo-social.entypo-github
 											=githubUsername
+									if facebookUsername
+										a(href='https://facebook.com/' + facebookUsername, target='_blank', data-toggle='tooltip', data-title=facebookUsername, data-placement='top').member__account.member__account--facebook.btn.btn-default
+											span.entypo-social.entypo-facebook
+											=facebookUsername
+						
 							if member.bio.html
 								!= member.bio.html
 				if member.talks && member.talks.length
