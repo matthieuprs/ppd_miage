@@ -22,8 +22,9 @@ block content
 						.col-sm-9
 							h1.mb-0= member.name.full
 
-							if member.bio.html
-								!= member.bio.html
+							h4.mb-0= member.type + " - " + member.formation + " - " + member.universite
+								if member.entreprise
+									h6.mb-0= member.entreprise + " - " + member.fonction
 
 							p.text-muted.mv-1 Member since #{moment(member.createdOn).format('MMMM YYYY')}
 							if twitterUsername || githubUsername || facebookUsername
