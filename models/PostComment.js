@@ -7,7 +7,7 @@ var keystone = require('keystone'),
  */
 
 var PostComment = new keystone.List('PostComment', {
-	nocreate: true
+	nocreate: false
 });
 
 PostComment.add({
