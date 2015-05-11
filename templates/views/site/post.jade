@@ -26,8 +26,13 @@ block content
 									| ,&nbsp;
 								else
 									|&nbsp;
-										
+
 					h1.blog-post__title= post.title
+
+				if post.image.exists
+					.post-image.mv-3: img(src=post._.image.fit(720,420)).img-responsive.img-thumbnail
+				!= post.content.full
+
 
 					//- sharing buttons
 					.share-buttons
@@ -37,9 +42,6 @@ block content
 							a(href="https://twitter.com/share", data-via="SydJS", data-hashtags="sydjs", data-count="button", data-dnt="true").twitter-share-button Tweet
 						span.share-button
 							.g-plusone(data-size="medium")
-				if post.image.exists
-					.post-image.mv-3: img(src=post._.image.fit(720,420)).img-responsive.img-thumbnail
-				!= post.content.full
 
 				//- Comment
 					.comments
