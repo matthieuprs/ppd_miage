@@ -22,10 +22,13 @@ block content
 						.col-sm-9
 							h1.mb-0= member.name.full
 
-							if member.bio.html
-								!= member.bio.html
+							h4.mb-0= member.type + " - " + member.formation + " - " + member.universite
+								if member.entreprise
+									h6.entrepriseetfonction.mb-0= member.entreprise + " - " + member.fonction
+							if member.scholar
 
-							p.text-muted.mv-1 Member since #{moment(member.createdOn).format('MMMM YYYY')}
+							div.text-muted.mv-1 Member since #{moment(member.createdOn).format('MMMM YYYY')}
+							div.text-muted.mv-1="Parcours scolaire : " + member.scholar
 							if twitterUsername || githubUsername || facebookUsername
 								.member__accounts.mb-1
 									if twitterUsername
