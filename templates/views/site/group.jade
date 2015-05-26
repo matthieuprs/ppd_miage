@@ -6,8 +6,4 @@ block content
         p #{orga.name}
         p #{orga.author.name.first}  #{orga.author.name.last}
         div!= orga.description.html
-      each group in test
-        p #{group.name}
-        div!= group.description.html
-
 block js
