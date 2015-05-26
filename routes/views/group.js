@@ -12,7 +12,7 @@ exports = module.exports = function(req, res) {
 
   view.on('init', function(next) {
 		// la liste des groupes de la personne dont elle est créatrice, donc admin
-    keystone.list('Organisation').model.find().where('author',res.locals.user.id).populate('author').exec(function(err, orgas) {
+    /*keystone.list('Organisation').model.find().where('author',res.locals.user.id).populate('author').exec(function(err, orgas) {
 
       console.log(res.locals.user.id);
 
@@ -24,22 +24,24 @@ exports = module.exports = function(req, res) {
       console.log(locals.orgas.author);
 
       console.log(locals.orgas);
-      next();
+*/
+			//récupère la liste de mes groupes suivis
+				keystone.list('User').model.findById(res.locals.user.id).populate('groupes').exec(function(err,tamere){
+					locals.groupes = tamere.groupes;
+					console.log("################ Les groupes");
+					console.log(locals.groupes);
+					next();
+				});
     });
-
-		//récupère la liste de mes groupes suivis
-			keystone.list('User').model.findById(res.locals.user.id).populate('groupes').exec(function(err,user){
-				locals.test = user.groupes;
-				console.log(locals.test);
-			});
-
+		view.render('site/group');
+/*
 			//récupère la liste des membres du groupes selectionné
     keystone.list('Organisation').model.findOne().populate('author').exec(function(err, post) {
       console.log(post.author.name);
     });
 
-  });
+  });*/
 
   // Render the view
-	view.render('site/group');
+	//view.render('site/group');
 }
