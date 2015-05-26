@@ -63,6 +63,7 @@ exports = module.exports = function(app) {
 	app.get('/about', routes.views.about);
 	app.get('/mentoring', routes.views.mentoring);
 	app.get('/group', routes.views.group);
+	app.get('/calendar', routes.views.calendar)
 
 	app.get('/showbag', routes.views.showbag);
 
