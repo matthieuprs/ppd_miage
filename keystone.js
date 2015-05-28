@@ -88,7 +88,8 @@ keystone.set('nav', {
 	'meetups': ['meetups', 'talks', 'rsvps'],
 	'members': ['users', 'organisations'],
 	'posts': ['posts', 'post-categories', 'post-comments'],
-	'links': ['links', 'link-tags', 'link-comments']
+	'links': ['links', 'link-tags', 'link-comments'],
+	'documents': ['docs']
 });
 
 keystone.start();
