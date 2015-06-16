@@ -4,11 +4,9 @@ include ../../mixins/post
 
 block intro
 	.page-intro: .container
-		h1.page-title=data.category ? data.category.name : 'Blog'
+		h1.page-title=data.category ? data.category.name : 'Fil d\'actualité'
 		p.lead
-			| This is the blog of SydJS, contributed by our members and guest authors.&nbsp;
-			a(href='/join').js-auth-trigger Join now
-			| &nbsp;to contribute.
+			| Page regroupant les discussions des Miagistes de Descartes.&nbsp;
 
 block content
 

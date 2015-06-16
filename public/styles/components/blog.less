@@ -6,7 +6,7 @@
 	.clearfix();
 	margin-bottom: 40px;
 	text-align: center;
-	
+
 }
 .blog-post__image {
 	margin-bottom: 20px;
@@ -16,7 +16,7 @@
 }
 .blog-post__heading {
 	margin-top: 0;
-	
+
 	a {
 		color: @headings-color;
 	}
@@ -24,7 +24,7 @@
 .blog-post__author {
 	color: mix(@body-bg, @text-color, 50%);
 	font-weight: 200;
-	
+
 	a {
 		color: mix(@body-bg, @text-color, 50%);
 	}
@@ -49,6 +49,9 @@
 // Card styles
 
 .post-cards {
+	float:left;
+	height: auto;
+	width: 50em;
 	.post-card:nth-of-type(3n+1) {
 		clear: both;
 	}
@@ -61,18 +64,21 @@
 	.tile-base();
 	margin-top: 2em;
 	overflow: hidden;
+	border-radius: 10px;
+	border-color: #2C75FF;
+	border-style:inset;
 
 	a {
-		color: @gray-darker;
+		color: #0F056B;
 	}
-	
+
 	.post-summary {
 		padding: @page-padding / 2;
 		.post-byline {
 			.clearfix();
 			padding-bottom: @page-padding / 4;
-			border-bottom: 1px solid @gray-darker;
-			color: @gray-darker;
+			border-bottom: 1px solid #2C75FF;
+			color:#2C75FF ;
 			font-size: @font-size-base * 0.85;
 			font-weight: 400;
 
@@ -103,11 +109,11 @@
 	height: 30px;
 	.clearfix();
 	position: relative;
-	
+
 	@media (min-width: @screen-sm-min) {
 		&.right {
 			float: right;
-		
+
 			.share-button {
 				margin-right: 0;
 				margin-left: 10px;
