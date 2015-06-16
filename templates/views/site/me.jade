@@ -5,41 +5,33 @@ block intro
 block flash-messages
 
 block content
-  .container-sm
-    .page-intro
-      p.lead Hi #{user.name.first}, these are your settings and
-        a(href=user.url) profile details
-        //- if nextMeetup
+	.container-sm
+		.page-intro
+			p.lead Hi #{user.name.first}, these are your settings and
+				a(href=user.url) profile details
+			//- if nextMeetup
 				.alert.alert-info
 					span.entypo.entypo-calendar
 					|  The next meetup has been announced -
 					a(href=nextMeetup.url).alert-link= nextMeetup._.startDate.format('dddd D MMM YYYY')
-    .page-content.tile.ph-2.pv-2.mb-2
+		.page-content.tile.ph-2.pv-2.mb-2
 			+flash-messages(messages)
 			form(method='post', enctype='multipart/form-data', autocomplete='off', novalidate).form-horizontal
-        input(type='hidden', name='action', value='profile.details')
+				input(type='hidden', name='action', value='profile.details')
 				h3 Private Info
 				.form-group
 					label.col-sm-2.control-label Name
-            .col-sm-10: .form-row
+					.col-sm-10: .form-row
 						.col-xs-6: input(type='text', name='name.first' value=user.name.first).form-control
 						.col-xs-6: input(type='text', name='name.last' value=user.name.last).form-control
 
-        .form-group
+				.form-group
 					label.col-sm-2.control-label Email
 					.col-sm-10: input(type='email', name='email' value=user.email).form-control
 
-        h3 Educ Info
 				.form-group
 					label.col-sm-2.control-label Formation
-						select(id="test", name="tests")
-    					option(value='L3') L3
-      				option(value='M1') M1
-      				option(value='M2') M2
-
-				.form-group
-					label.col-sm-2.control-label Université
-					.col-sm-10: input(type='universite', name='universite' value=user.universite).form-control
+					.col-sm-10: input(type='formation', name='formation' value=user.formation).form-control
 
 				.form-group
 					label.col-sm-2.control-label Entreprise
@@ -54,7 +46,6 @@ block content
 						.checkbox: label
 							input(type='checkbox', name='notifications.posts' value='true' checked=user.notifications.posts)
 							|  When there is a new post
-<<<<<<< Updated upstream
 
 				hr.mv-2
 				h3 Education
@@ -65,10 +56,7 @@ block content
 				h3 Your Services
 				p.help-block.mb-2 You can authenticate yourself on the SydJS website with any of the services you connect. When connected, links to your Twitter and Github will be displayed on your profile.
 
-=======
->>>>>>> Stashed changes
 
-				hr.mv-2
 				//- Unconfigured Services
 
 				if !user.services.github.isConfigured
