@@ -5,8 +5,13 @@ block flash-messages
 
 block intro
 	.page-intro: .container
+<<<<<<< HEAD
+		h1.page-title Liste des membres
+		p.lead
+=======
 		h1.page-title Membres
 		p.lead Annuaire des membres
+>>>>>>> origin/master
 			if !user
 				a(href='/join').js-auth-trigger Add your tile
 
@@ -45,7 +50,7 @@ block content
 		+flash-messages(messages)
 		if organisers.length
 			.members-group
-				h3.text-caps.mb-1 Organisers
+				h3.text-caps.mb-1 Aministrateurs(s)
 				ul.list-unstyled.members-list
 					li.grid-sizer
 					each organiser in organisers
@@ -59,7 +64,7 @@ block content
 						+member(speaker)
 		if community.length
 			.members-group
-				h3.text-caps.mt-2.mb-1 Community
+				h3.text-caps.mt-2.mb-1 Communauté
 				ul.list-unstyled.members-list
 					li.grid-sizer
 					each member in community

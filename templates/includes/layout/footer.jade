@@ -3,32 +3,31 @@ footer.site-footer.site-footer--sticky: .container
 	.row
 		.col-sm-4
 			h5.footer-heading About
-			p Every 3rd Wednesday of the month you'll find us talking about what we're doing and what's happening around us in the world of JavaScript. 
+			p Miage Descartes est la plateforme de la formation Miage de l'Université Paris Descartes.
 			ul.list-inline
 				li: a(href='/about') More about SydJS
-				li: a(href='mailto:craig.sharkie+sydjs@gmail.com') Contact us
+				li: a(href='mailto:m2fa-miage-ppd@googlegroups.com') Contact us
 
 		.col-sm-8
 			.row
 				.col-xs-4
-					h5.footer-heading Members
+					h5.footer-heading Membres
 					ul
-						li: a(href='/members') Members
-						li: a(href='/mentoring') Mentoring
-						li: a(href='/members/mentors') Mentors
+						li: a(href='/members') Membres
+						//li: a(href='/mentoring') Mentoring
+						//li: a(href='/members/mentors') Mentors
 						if !user
 							li: a(href='/join').js-auth-trigger Become a Member
 				.col-xs-4
-					h5.footer-heading Resources
+					h5.footer-heading Ressources
 					ul
-						li: a(href='/organisations') Organisations
-						li: a(href='/links') Links
-						li: a(href='/blog') Blog
+						li: a(href='/organisations') Groupes
+						li: a(href='/links') Liens
+						li: a(href='/blog') Fil d'actus
 						li: a(href='/showbag') Showbag
 				.col-xs-4
-					h5.footer-heading Sponsors
+					h5.footer-heading Groupes
 					ul: each sponsor in sponsors
 						li: a(href='/organisations#' + sponsor.id)= sponsor.name
 	.row.footer-copyright
 		p Copyright &copy; 2014 SydJS. Powered by <a href='http://keystonejs.com', target='_blank'>KeystoneJS</a>.
-		p If you run a meetup, please feel free to clone our site and make your own! You can <a href="https://github.com/JedWatson/sydjs-site", target='_blank'>find it on GitHub</a>.
