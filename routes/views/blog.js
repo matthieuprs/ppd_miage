@@ -8,7 +8,7 @@ exports = module.exports = function(req, res) {
 
 	// Init locals
 	locals.section = 'blog';
-	locals.page.title = 'Fil d\'actualité';
+	locals.page.title = 'Fil d\'actualité	';
 	locals.filters = {
 		category: req.params.category
 	};
@@ -16,7 +16,7 @@ exports = module.exports = function(req, res) {
 		posts: [],
 		categories: []
 	};
-
+	//Ajout commentaire pour commit
 	// Load all categories
 	view.on('init', function(next) {
 
