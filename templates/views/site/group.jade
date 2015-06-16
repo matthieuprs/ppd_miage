@@ -1,5 +1,17 @@
 extends ../../layouts/default
 
+
+
+block intro
+  h1(style='text-align: center;')=group.name
+  p(style='text-align: center;')="Crée par : " + group.author.name.first + " " + group.author.name.last
+  p(style='text-align: center;')="Description : " + group.description.md
+
 block content
-  p #{group}
+    li.member-item
+      .member.member--card
+        .member-section.member__photo
+        .member-section.member__info
+          h5.member__title(class=(member.bio.html ? null : 'member__title-only')): a(href=member.url)= member.name.full
+
 block js
