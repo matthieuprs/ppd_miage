@@ -12,8 +12,6 @@ exports = module.exports = function(req, res) {
 		group: req.params.group
 	};
 
-	console.log(locals.filters.group);
-
   view.on('init', function(next) {
 		Group.model.findOne()
 			.where('name', locals.filters.group)
@@ -26,7 +24,6 @@ exports = module.exports = function(req, res) {
 
 			});
 	});
-	console.log("###Affichage");
 	view.render('site/group');
 
 }
