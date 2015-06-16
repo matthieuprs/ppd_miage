@@ -1,5 +1,8 @@
 extends ../../layouts/default
 
 block content
-  p #{group}
+  if myGroups
+    p #{myGroups}
+  else
+    p ya pas
 block js
