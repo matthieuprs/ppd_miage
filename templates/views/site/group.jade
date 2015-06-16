@@ -6,12 +6,54 @@ block intro
   h1(style='text-align: center;')=group.name
   p(style='text-align: center;')="Crée par : " + group.author.name.first + " " + group.author.name.last
   p(style='text-align: center;')="Description : " + group.description.md
-
-block content
+  each member in group.members
     li.member-item
       .member.member--card
         .member-section.member__photo
-        .member-section.member__info
-          h5.member__title(class=(member.bio.html ? null : 'member__title-only')): a(href=member.url)= member.name.full
+          a(href=member.url): img(src=(member.photo.exists ? member._.photo.thumbnail(60,60) : member.avatarUrl || '/images/avatar.png'), alt=member.name.full, width=60, height=60)
+        h5.member__title(class=(member.bio.html ? null : 'member__title-only')): a(href=member.url)= member.name.full
+
+block content
+  h1(style='text-align: center;')="Liste des publications"
+  //each post in group.posts
+    //div
+      //h3.text-muted= post.title
+  p=group.posts
+  each post in group.posts
+    article.full-post
+      if !post
+        h2 Invalid Post.
+      else
+        header
+          if post.state != 'published' && user.isAdmin
+            .mt-1: .alert.alert-danger This Post has not been published yet.
+              a(href='/keystone/posts/' + post.id).alert-link Open Keystone
+              |  to publish it.
+          p.blog-post__byline Posted
+            if post.author
+              |  by&nbsp;
+              a(href=post.author.url, rel='author')=post.author.name.full
+            if post.publishedDate
+              |  on #{post._.publishedDate.format('MMMM D, YYYY')}
+            if post.categories && post.categories.length
+              |  in&nbsp;
+              each cat, cat_i in post.categories
+                a(href='/blog/' + cat.key)= cat.name
+                if cat_i < post.categories.length - 1
+                  | ,&nbsp;
+                else
+                  |&nbsp;
+
+          h1.blog-post__title= post.title
+
+        if post.image.exists
+          .post-image.mv-3: img(src=post._.image.fit(720,420)).img-responsive.img-thumbnail
+        != post.content.full
+
 
 block js
+  script(src='/js/lib/bootstrap/transition.js')
+  script(src='/js/lib/bootstrap/tooltip.js')
+  script(src="/js/lib/masonry/masonry.pkgd.min.js")
+  script(src="/js/lib/masonry/imagesloaded.pkgd.min.js")
+  script(src="/js/views/members.js")
