@@ -31,7 +31,12 @@ block content
 
 				.form-group
 					label.col-sm-2.control-label Formation
-					.col-sm-10: input(type='formation', name='formation' value=user.formation).form-control
+					.col-sm-10: select(type='formation', name='formation' ).form-control
+						each i in [ 'L3','M1','M2']
+							if i == user.formation
+								option(value=i selected) #{i}
+							else
+								option(value=i) #{i}
 
 				.form-group
 					label.col-sm-2.control-label Entreprise
@@ -50,7 +55,12 @@ block content
 				hr.mv-2
 				h3 Education
 				strong.col-sm-2.control-label Type
-					user.Education.Type
+				.col-sm-10: select(type='type', name='type' ).form-control
+					each i in ['Professeur', 'Etudiant','Ancien']
+						if i == user.type
+							option(value=i selected) #{i}
+						else
+							option(value=i) #{i}
 
 				hr.mv-2
 				h3 Your Services

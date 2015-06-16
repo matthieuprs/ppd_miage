@@ -20,7 +20,8 @@ exports = module.exports = function(req, res) {
 				if (err) return res.err(err);
 				if (!group) return res.notfound('Group not found');
 				locals.group = group;
-				locals.group.populateRelated('posts members',next);
+				locals.group.populateRelated('posts[author] members',next);
+
 
 			});
 	});
