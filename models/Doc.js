@@ -17,15 +17,15 @@ Doc.add({
 	documentName: { type: String, required: true, label: 'Document Name', initial: true },
 	uploadedOn: { type: Date, default: Date.now },
 	category: { type: Types.Select, options: [
-    									{ value: 'L3', label: 'L3 MIAGE' },
-    									{ value: 'M1', label: 'M1 MIAGE' },
-    									{ value: 'M2', label: 'M2 MIAGE' }
+    									{ value: 'L3 MIAGE', label: 'L3 MIAGE' },
+    									{ value: 'M1 MIAGE', label: 'M1 MIAGE' },
+    									{ value: 'M2 MIAGE', label: 'M2 MIAGE' }
 									], label: 'Category', required: true, initial: true },
 	teacher: { type: String, required: true, label: 'Teacher', initial: true },
 	upload: {
 		type: Types.LocalFile,
 		label: 'Upload File',
-		dest: '../upload/',
+		dest: './public/upload/',
 		prefix: '',
 		filename: function(item, file){
 			return item.id + '_' + file.originalname;
@@ -38,7 +38,7 @@ Doc.add({
 		watch: true,
 		value: function() {
 			if (typeof(this.upload.path) != 'undefined')
-				return this.upload.path + this.upload.filename;
+				return '/upload/' + this.upload.filename;
 		}
 	}
 });

@@ -8,10 +8,12 @@ exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res),
 		locals = res.locals;
 	
-	locals.section = 'docs'
+	locals.section = 'docs';
+	locals.page.title = 'Meetups - SydJS';
+	
     locals.data = {
         docs : []
-    }
+    };
 	
 	// Load all categories
 	view.on('init', function(next) {
