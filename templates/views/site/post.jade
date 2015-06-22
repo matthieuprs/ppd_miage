@@ -26,13 +26,11 @@ block content
 									| ,&nbsp;
 								else
 									|&nbsp;
-
 					h1.blog-post__title= post.title
 
 				if post.image.exists
 					.post-image.mv-3: img(src=post._.image.fit(720,420)).img-responsive.img-thumbnail
 				!= post.content.full
-
 
 					//- sharing buttons
 					.share-buttons

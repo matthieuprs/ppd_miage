@@ -26,7 +26,7 @@ block content
 							h3.text-muted No posts in the category #{data.category.name}.
 						else
 							h3.text-muted There are no posts yet.
-							
+
 			if data.categories.length
 				.col-md-2
 					if data.categories.length
@@ -35,3 +35,14 @@ block content
 							li: a(href='/blog', class=!data.categories ? 'active' : false) All
 							each tag in data.categories
 								li: a(href='/blog/' + tag.key, class=data.category && data.category.id == tag.id ? 'active' : false).list-group-item= tag.name
+			if user
+				a.show-list(href='javascript:void(0)')
+				i.fa.fa-th-list
+				a.hide-list(href='javascript:void(0)')
+				i.fa.fa-th
+			if myGroups
+				.container
+					each myGroup in myGroups
+						p GROUPE LALAL
+			else
+				p vous n'avez pas de groupe
