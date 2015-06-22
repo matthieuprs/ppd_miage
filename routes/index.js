@@ -65,8 +65,8 @@ exports = module.exports = function(app) {
 	app.all('/group/:group?', routes.views.group);
 	app.all('/myGroups',routes.views.myGroups)
 	app.get('/calendar', routes.views.calendar);
+
 	app.get('/showbag', routes.views.showbag);
-	app.get('/docs', routes.views.doc);
 
 	// Session
 	app.all('/join', routes.views.session.join);
