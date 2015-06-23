@@ -18,7 +18,7 @@ Organisation.add({
 	website: Types.Url,
 	description: { type: Types.Markdown },
 	location: Types.Location,
-	color :Types.Color 
+	color :Types.Color
 });
 
 
@@ -30,6 +30,16 @@ Organisation.add({
 Organisation.relationship({ ref: 'User', refPath: 'organisation', path: 'members' });
 Organisation.relationship({ ref: 'Post', refPath: 'groupes', path: 'posts' });
 
+
+/**
+ * Virtuals
+ * ========
+ */
+
+// Link to member
+Organisation.schema.virtual('url').get(function() {
+	return '/group/' + this.key;
+});
 
 /**
  * Registration

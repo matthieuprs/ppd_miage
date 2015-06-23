@@ -1,11 +1,15 @@
 mixin post(post)
-	if groups
-		ul.groups
-			each grp in groups
-				if grp.name
-					li= grp.name
 	.post.type-post.status-publish.format-standard.hentry.category-uncategorized.entry
-		h2.entry-title
-			a(href='blog/post/'+post.slug) #{post.title}
-		span.entry-author= 'écrit par ' + post.author.name.full
+		//.floatclear.groups
+		.entry-author-container
+			a(href=post.author.url): img(src=(post.author.photo.exists ? post.author._.photo.thumbnail(360,360) : post.author.avatarUrl || '/images/avatar.png'), alt=post.author.name.full, width=80, height=80)
+			.entry-author-detail
+				p.entry-author= post.author.name.full
+				p.entry-date= 'Le ' + moment(post.publishedDate).format('D/MM/YYYY')
+			if post.groupes
+				.entry-groups
+					each grp in post.groupes
+						span.entry-line-group-before(style="background-color:" + grp.color + ";")
+						span.entry-line-group= grp.name
+		.floatclear
 		.entry-content!= post.content.extended

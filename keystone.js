@@ -92,4 +92,7 @@ keystone.set('nav', {
 	'documents': ['docs']
 });
 
+keystone.set('cloudinary config', { cloud_name: 'dju6hmeeg', api_key: '693682562797643', api_secret: 'G11UdtGexbdXsRsWgX2KEw3rcT4' });
+keystone.set('cloudinary config', 'cloudinary://693682562797643:G11UdtGexbdXsRsWgX2KEw3rcT4@dju6hmeeg' );
+
 keystone.start();
