@@ -12,13 +12,12 @@ exports.initLocals = function(req, res, next) {
 	var locals = res.locals;
 
 	locals.navLinks = [
-		{ label: 'Home',		key: 'home',		href: '/' },
-		{ label: 'About',		key: 'about',		href: '/about' },
-		{ label: 'Meetups',		key: 'meetups',		href: '/meetups' },
-		{ label: 'Members',		key: 'members',		href: '/members' },
-		{ label: 'Blog',		key: 'blog',		href: '/blog' },
+		{ label: 'Accueil',		key: 'home',		href: '/' },
+		{ label: 'A propos',		key: 'about',		href: '/about' },
+		{ label: 'Histoire',		key: 'meetups',		href: '/meetups' },
+		{ label: 'Membres',		key: 'members',		href: '/members' },
+		{ label: 'Fil d\'actus',		key: 'blog',		href: '/blog' },
 		{ label: 'Calendrier',	key: 'calendar',	href: '/calendar' },
-		{ label: 'Showbag',		key: 'showbag',		href: '/showbag' },
 		{ label: 'Docs',		key:'docs',			href:'/docs'}
 	];
 
@@ -27,7 +26,7 @@ exports.initLocals = function(req, res, next) {
 	locals.basedir = keystone.get('basedir');
 
 	locals.page = {
-		title: 'SydJS',
+		title: 'Miage',
 		path: req.url.split("?")[0] // strip the query - handy for redirecting back to the page
 	};
 

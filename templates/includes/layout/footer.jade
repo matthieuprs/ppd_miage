@@ -2,11 +2,11 @@
 footer.site-footer.site-footer--sticky: .container
 	.row
 		.col-sm-4
-			h5.footer-heading About
-			p Miage Descartes est la plateforme de la formation Miage de l'Université Paris Descartes.
+			h5.footer-heading A propos
+			p	Plateforme collaborative des Miagiste cartésiens réunissant les professeurs, les étudiants, les anciens	élèves de Miage à l'Université Paris Descartes
 			ul.list-inline
-				li: a(href='/about') More about SydJS
-				li: a(href='mailto:m2fa-miage-ppd@googlegroups.com') Contact us
+				li: a(href='/about') Pour en savoir plus sur nous
+				li: a(href='mailto:m2fa-miage-ppd@googlegroups.com') Contactez nous!
 
 		.col-sm-8
 			.row
@@ -14,20 +14,17 @@ footer.site-footer.site-footer--sticky: .container
 					h5.footer-heading Membres
 					ul
 						li: a(href='/members') Membres
-						//li: a(href='/mentoring') Mentoring
-						//li: a(href='/members/mentors') Mentors
+						li: a(href='/meetups') Les grandes réalisations
 						if !user
-							li: a(href='/join').js-auth-trigger Become a Member
+							li: a(href='/join').js-auth-trigger Rejoignez nous!
 				.col-xs-4
 					h5.footer-heading Ressources
 					ul
 						li: a(href='/organisations') Groupes
-						li: a(href='/links') Liens
 						li: a(href='/blog') Fil d'actus
-						li: a(href='/showbag') Showbag
 				.col-xs-4
 					h5.footer-heading Groupes
 					ul: each sponsor in sponsors
 						li: a(href='/organisations#' + sponsor.id)= sponsor.name
 	.row.footer-copyright
-		p Copyright &copy; 2015 SydJS. Powered by <a href='http://keystonejs.com', target='_blank'>KeystoneJS</a>.
+		p Copyright &copy; 2015 Miage Descartes. Powered by <a href='http://keystonejs.com', target='_blank'>KeystoneJS</a>.
