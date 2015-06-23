@@ -1,0 +1,15 @@
+header
+    h1 CONTACT FORM
+    section
+      .arrow-up
+      form#contact.form-horizontal(role='form')
+        .form-group
+          .col-sm-12
+            input#name.form-control(name='name', type='text', placeholder='Nom et prénom')
+        .form-group
+          .col-sm-12
+            input#email.form-control(name='email', type='email', placeholder='Adresse mail')
+        .form-group
+          .col-sm-12
+            textarea#message.form-control(name='message', placeholder='Votre message')
+        button#send.btn.btn-block(name='send') send
