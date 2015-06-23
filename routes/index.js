@@ -63,16 +63,10 @@ exports = module.exports = function(app) {
 	app.get('/about', routes.views.about);
 	app.get('/mentoring', routes.views.mentoring);
 	app.all('/group/:group?', routes.views.group);
-	app.all('/myGroups',routes.views.myGroups)
+	app.all('/myGroups',routes.views.myGroups);
 	app.get('/calendar', routes.views.calendar);
-<<<<<<< HEAD
-<<<<<<< HEAD
 	app.get('/contact', routes.views.contact);
 
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 	app.get('/showbag', routes.views.showbag);
 	app.get('/docs', routes.views.doc);
 
