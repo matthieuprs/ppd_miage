@@ -1,0 +1,61 @@
+// Post
+// ---------------
+
+.entry {
+  position: relative;
+  overflow: hidden;
+  margin: 30px 0;
+  padding: 20px 20px 2em 20px;
+  background: #FFF;
+  font-family: "Open Sans", sans-serif;
+  box-shadow: 0 0 15px #999;
+  text-align: justify;
+}
+
+.entry-title,
+.entry-title a {
+  display: inline;
+  margin-top: 0;
+  margin-right: 0.1em;
+  font-family: Oswald, sans-serif;
+  color: #333;
+  text-decoration: none;
+}
+
+.entry-title a:hover {
+  color: #555;
+}
+
+.entry-author {
+  color:gray;
+}
+
+.more-link {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  background: #555;
+  color: #FFF;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 10px #000;
+}
+
+.more-link:hover {
+  background: #5E5E5E;
+}
+
+.more-link:after {
+	content: "\2193";
+	margin-left: 8px;
+	font-size: .8em;
+}
+
+.more-link.open:after {
+	content: "\2191";
+}
