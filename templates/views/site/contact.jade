@@ -1,8 +1,12 @@
-header
-    h1 CONTACT FORM
-    section
-      .arrow-up
-      form#contact.form-horizontal(role='form')
+extends ../../layouts/default
+
+block content
+  .container-sm
+    .page-intro
+      p.lead Vous voulez nous contacter ? Saisissez votre message ici.
+    .page-content.tile.ph-2.pv-2.mb-2
+      form(method='post', enctype='multipart/form-data', autocomplete='off', novalidate).form-horizontal
+        input(type='hidden', name='action', value='contact.send')
         .form-group
           .col-sm-12
             input#name.form-control(name='name', type='text', placeholder='Nom et prénom')
@@ -12,4 +16,5 @@ header
         .form-group
           .col-sm-12
             textarea#message.form-control(name='message', placeholder='Votre message')
-        button#send.btn.btn-block(name='send') send
+        hr.mv-2
+        button(type='submit', data-loading-text="Chargement...").btn.btn-primary Envoyer
