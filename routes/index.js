@@ -67,6 +67,7 @@ exports = module.exports = function(app) {
 	app.get('/calendar', routes.views.calendar);
 	app.get('/showbag', routes.views.showbag);
 	app.get('/docs', routes.views.doc);
+	app.get('/contact', routes.views.contact);
 
 	// Session
 	app.all('/join', routes.views.session.join);

@@ -17,7 +17,8 @@ Organisation.add({
 	author: { type: Types.Relationship, ref: 'User',label : 'Creator', index: true },
 	website: Types.Url,
 	description: { type: Types.Markdown },
-	location: Types.Location
+	location: Types.Location,
+	color :Types.Color 
 });
 
 
