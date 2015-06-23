@@ -12,9 +12,8 @@ block intro
         .member-section.member__photo
           a(href=member.url): img(src=(member.photo.exists ? member._.photo.thumbnail(60,60) : member.avatarUrl || '/images/avatar.png'), alt=member.name.full, width=60, height=60)
           h5.member__title(class=(member.bio.html ? null : 'member__title-only')): a(href=member.url)= member.name.full
-    br
-    br
-    br
+
+
 block content
   h1(style='text-align: center;')="Liste des publications"
   //each post in group.posts
