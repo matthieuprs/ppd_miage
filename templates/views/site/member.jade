@@ -6,7 +6,7 @@ block content
 			.lead.text-center
 				.h2.mb-0.text-muted: span.entypo.entypo-user
 				br
-				.text-muted This member has a private profile.
+				.text-muted Ce membre a un profil privé.
 		else
 			- var twitterUsername = member.twitterUsername || (member.twitter ? member.twitter.replace('@', ''): '');
 			- var githubUsername = member.githubUsername || (member.github ? member.github.replace('@', '') : '');
