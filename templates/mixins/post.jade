@@ -6,6 +6,7 @@ mixin post(post)
 			.entry-author-detail
 				p.entry-author= post.author.name.full
 				p.entry-date= 'Le ' + moment(post.publishedDate).format('D/MM/YYYY')
+				a(href='/blog/post/' + post.slug).alert-link Voir la publication	
 			if post.groupes
 				.entry-groups
 					each grp in post.groupes
