@@ -7,8 +7,8 @@ block flash-messages
 block content
 	.container-sm
 		.page-intro
-			p.lead Hi #{user.name.first}, these are your settings and
-				a(href=user.url) profile details
+			p.lead Bonjour #{user.name.first}, voici les paramètres
+				a(href=user.url)  de votre profil
 			//- if nextMeetup
 				.alert.alert-info
 					span.entypo.entypo-calendar
@@ -18,9 +18,9 @@ block content
 			+flash-messages(messages)
 			form(method='post', enctype='multipart/form-data', autocomplete='off', novalidate).form-horizontal
 				input(type='hidden', name='action', value='profile.details')
-				h3 Private Info
+				h3 Information
 				.form-group
-					label.col-sm-2.control-label Name
+					label.col-sm-2.control-label Nom
 					.col-sm-10: .form-row
 						.col-xs-6: input(type='text', name='name.first' value=user.name.first).form-control
 						.col-xs-6: input(type='text', name='name.last' value=user.name.last).form-control
@@ -43,7 +43,7 @@ block content
 					.col-sm-10: input(type='entreprise', name='entreprise' value=user.entreprise).form-control
 
 				.form-group
-					strong.col-sm-2.control-label Notify me
+					strong.col-sm-2.control-label Notifications
 					.col-sm-10
 						.checkbox: label
 							input(type='checkbox', name='notifications.meetups' value='true' checked=user.notifications.meetups)
@@ -63,8 +63,8 @@ block content
 							option(value=i) #{i}
 
 				hr.mv-2
-				h3 Your Services
-				p.help-block.mb-2 You can authenticate yourself on the SydJS website with any of the services you connect. When connected, links to your Twitter and Github will be displayed on your profile.
+				h3 Réseaux Sociaux
+				p.help-block.mb-2 Vous pouvez vous authentifier avec les réseaux sociaux suivants. Certains d'entre eux seront affichés sur votre profil.
 
 
 				//- Unconfigured Services
