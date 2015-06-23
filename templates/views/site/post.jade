@@ -2,24 +2,24 @@ extends ../../layouts/default
 
 block content
 	.container-sm
-		a(href='/blog').text-muted &larr; Back to the blog
+		a(href='/blog').text-muted &larr; Retour à la fil d'actus
 		article.full-post
 			if !post
 				h2 Invalid Post.
 			else
 				header
 					if post.state != 'published' && user.isAdmin
-						.mt-1: .alert.alert-danger This Post has not been published yet.
+						.mt-1: .alert.alert-danger Ce post n'a pas encore été publié
 							a(href='/keystone/posts/' + post.id).alert-link Open Keystone
 							|  to publish it.
-					p.blog-post__byline Posted
+					p.blog-post__byline Posté
 						if post.author
-							|  by&nbsp;
+							|  par&nbsp;
 							a(href=post.author.url, rel='author')=post.author.name.full
 						if post.publishedDate
-							|  on #{post._.publishedDate.format('MMMM D, YYYY')}
+							|  le #{post._.publishedDate.format('MMMM D, YYYY')}
 						if post.categories && post.categories.length
-							|  in&nbsp;
+							|  dans&nbsp;
 							each cat, cat_i in post.categories
 								a(href='/blog/' + cat.key)= cat.name
 								if cat_i < post.categories.length - 1
