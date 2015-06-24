@@ -14,25 +14,59 @@ var Doc = new keystone.List('Doc', {
 
 
 Doc.add({
-	documentName: { type: String, required: true, label: 'Document Name', initial: true },
-	uploadedOn: { type: Date, default: Date.now },
-	category: { type: Types.Select, options: [
-    									{ value: 'L3 MIAGE', label: 'L3 MIAGE' },
-    									{ value: 'M1 MIAGE', label: 'M1 MIAGE' },
-    									{ value: 'M2 MIAGE', label: 'M2 MIAGE' }
-									], label: 'Category', required: true, initial: true },
-	teacher: { type: String, required: true, label: 'Teacher', initial: true },
+	documentName: { 
+		type: String, 
+		required: true, 
+		label: 'Nom du Document', 
+		initial: true 
+	},
+	uploadedOn: { 
+		type: Date, 
+		default: Date.now, 
+		format: 'MMMM Do YYYY',
+		label: 'Crée le' 
+	},
+	category: { 
+		type: Types.Select, 
+		options: [
+    		{ value: 'L3 MIAGE', label: 'L3 MIAGE' },
+    		{ value: 'M1 MIAGE', label: 'M1 MIAGE' },
+    		{ value: 'M2 MIAGE', label: 'M2 MIAGE' }
+		], 
+		label: 'Année', 
+		required: true, 
+		initial: true 
+	},
+	teacher: { 
+		type: Types.Relationship, 
+		ref: 'User', 
+		filters : { type: 'Professeur' },
+		label: 'Professeur Encadrant' 
+	},
+	desc: { 
+		type: Types.Markdown, 
+		toolbarOptions: { hiddenButtons: 'Code' }, 
+		height: 200, 
+		label: 'Description du PPD' 
+	},
+	students: { 
+		type: Types.Relationship, 
+		ref: 'User', 
+		many: true, 
+		label: 'Etudiants', 
+		filters: { type: 'Etudiant'} 
+	},
 	upload: {
 		type: Types.LocalFile,
-		label: 'Upload File',
+		label: 'Uploader un Sujet',
 		dest: './public/upload/',
-		prefix: '',
 		filename: function(item, file){
 			return item.id + '_' + file.originalname;
 		}
 	},
 	download: {
 		type: Types.Url,
+		hidden: true,
 		label: 'Download Link',
 		noedit: true,
 		watch: true,

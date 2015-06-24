@@ -9,7 +9,7 @@ exports = module.exports = function(req, res) {
 		locals = res.locals;
 	
 	locals.section = 'docs';
-	locals.page.title = 'Meetups - SydJS';
+	locals.page.title = 'Docs - SydJS';
 	
     locals.data = {
         docs : []
@@ -18,6 +18,8 @@ exports = module.exports = function(req, res) {
 	// Load all categories
 	view.on('init', function(next) {
 		Doc.model.find({})
+		.sort('updatedAt')
+		.populate('teacher students')
         .exec(function(err, docs){
             locals.data.docs = docs;
             
