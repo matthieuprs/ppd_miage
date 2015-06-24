@@ -44,16 +44,16 @@ Doc.add({
 		label: 'Professeur Encadrant' 
 	},
 	desc: { 
-		type: Types.Markdown, 
-		toolbarOptions: { hiddenButtons: 'Code' }, 
-		height: 200, 
-		label: 'Description du PPD' 
+		type: Types.Html, 
+		wysiwyg: true, 
+		height: 100, 
+		label: 'Description du Projet' 
 	},
 	students: { 
 		type: Types.Relationship, 
 		ref: 'User', 
 		many: true, 
-		label: 'Etudiants', 
+		label: 'Etudiants',
 		filters: { type: 'Etudiant'} 
 	},
 	upload: {

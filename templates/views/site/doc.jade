@@ -6,6 +6,8 @@ block js
 block intro
 	.page-intro: .container
 		h1.page-title Listing des documents
+		p.lead
+			| Page regroupant les projets soumis par les professeurs.&nbsp;
 
 block content
 	.row
@@ -13,21 +15,36 @@ block content
 				if data.docs.length
 					.post-cards.row(itemscope itemtype="http://schema.org/Blog")
 						each doc, index in data.docs
-							.post.type-post.status-publish.format-standard.hentry.category-uncategorized.entry
-								.entry-author-container
-									a(href=doc.teacher.url): img(src=(doc.teacher.photo.exists ? doc.teacher._.photo.thumbnail(360,360) : doc.teacher.avatarUrl || '/images/avatar.png'), alt=doc.teacher.name.full, width=90, height=90)
-									.entry-author-detail
-										p.entry-author= doc.teacher.name.full
-										p.entry-date= 'Créé le ' + moment(doc.createdAt).format('D/MM/YYYY')
-										p.entry-content!= doc.desc.html
-										if doc.students
-											ul
-											each student in doc.students
-												p.students-list Etudiants associés : 
-													li 
-														a(href=student.url)= student.name.full												
-								.floatclear
-								br
-								a(href=doc.download).alert-link Consulter le sujet
+							div#projet
+								.post.type-post.status-publish.format-standard.hentry.category-uncategorized.entry
+									.entry-author-container
+										a(href=doc.teacher.url): img(src=(doc.teacher.photo.exists ? doc.teacher._.photo.thumbnail(360,360) : doc.teacher.avatarUrl || '/images/avatar.png'), alt=doc.teacher.name.full, width=90, height=90)
+										.entry-author-detail
+											p.entry-author= 'Posté par ' + doc.createdBy.name.full
+											p.entry-date= 'Créé le ' + moment(doc.createdAt).format('D/MM/YYYY')
+											br
+											p.entry-content!= doc.desc
+											if doc.students
+												br
+												div#students
+													ul
+													p.students-list Etudiants associés au projet :
+													each student in doc.students												 
+															li 
+																a(href=student.url)= student.name.full
+											if doc.teacher
+												div#teacher(style="margin-left:285px; margin-top:-109px")
+													ul
+													p.teachers-list Enseignant encadrant :								
+														li 
+															a(href=doc.teacher.url)= doc.teacher.name.full
+									.floatclear
+									br
+									br
+									br
+									if doc.upload									
+										a(href=doc.download).alert-link -> Consulter le sujet
+									else
+										h3.text-muted Pas de fichiers attachés.
 				else
-					h3.text-muted Il n'y a pas de sujets.
+					h3.text-muted(style="text-align:center;") Il n'y a pas de sujets.

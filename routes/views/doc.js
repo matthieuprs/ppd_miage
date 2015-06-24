@@ -18,8 +18,8 @@ exports = module.exports = function(req, res) {
 	// Load all categories
 	view.on('init', function(next) {
 		Doc.model.find({})
-		.sort('updatedAt')
-		.populate('teacher students')
+		.sort('createdAt')
+		.populate('teacher students createdBy')
         .exec(function(err, docs){
             locals.data.docs = docs;
             
