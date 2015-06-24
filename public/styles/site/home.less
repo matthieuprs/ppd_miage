@@ -1,63 +1,104 @@
-// HOME PAGE
-// ------------------------------------------------------
+// Home page
+// ---------------
 
-.sitesection-home {
-	.header-placeholder {
-		display: none;
-	}
-	.site-body {
-		padding-bottom: 0;
-	}
+.site-body {
+	padding:0;
 }
 
-// About
-// ------------------------------
-
-.home-about {
-/**	background: url( "/images/logo.png" ) center bottom no-repeat #f9f9f9;
-	border-top: 1px solid rgba(0, 0, 0, 0.05);
-	overflow: hidden;
-	position: relative;
-	text-align: center top;
-	padding-top: 8em;
-	padding-bottom: 12em;**/
+.home-block-intro {
+	min-height: 400px;
+	background: url('/images/home1.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
-.home-image{
-	border-top: 1px solid rgba(0, 0, 0, 0.05);
-	position: relative;
+.home-block-intro-centered {
+	background-color: rgba(255,255,255,0.3);
+}
+
+.home-block-intro h1 {
+	margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 400px;
+	width: 60%;
+}
+
+.home-block-intro span {
+	background-color: rgba(255,255,255,0.3);
+	border-radius: 10px;
+}
+
+.home-block-wrapper {
+  margin: 0;
+  padding: 40px 0;
+}
+
+.home-icons {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 62.5rem;
 	text-align: center;
-	overflow: hidden;
-	padding-top: 2em;
-	padding-bottom: 2em;
 }
 
-// LINKS
-.home-links {
+.home-icon-wrapper {
+  position: relative;
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+  float: left;
+  width: 33.33333%;
+}
+
+.home-icon-wrapper i {
+  font-size: 2em;
+}
+
+.home-img {
+	width: 40%;
+}
+
+.home-float-left{
+	float:left;
+}
+.home-float-right{
+	float:right;
+}
+
+.home-block-wrapper-img {
+	background-color:#D0D0D0;
+}
+
+.home-text-with-img {
+	padding : 3em;
+	width: 60%;
+}
+
+.home-text-with-img {
 	text-align: center;
-	.home-links__heading a {
-		color: @headings-color;
+}
 
-	}
+.home-text {
+	padding-top: 3em;
+	padding-bottom: 3em;
+	padding-left: 10em;
+	padding-right: 10em;
+}
 
-	.link-icon-badge {
-		.square( 90px );
-		border-radius: 50%;
-		display: inline-block;
-		line-height: 90px;
-		text-align: center;
-	}
-	.link-icon {
-		color: @text-color;
-		display: inline-block;
-		font-size: 80px;
-		margin-top: -4px;
-		vertical-align: middle;
-	}
-	@media (min-width: @screen-sm-min) {
-		.link-icon-badge {
-			margin-left: 0;
-			margin-right: 0;
-		}
-	}
+.home-text h3{
+	text-align: center;
+}
+
+.home-text p{
+	text-align: justify;
+}
+
+.home-floatclear {
+	clear:both;
 }

@@ -6,115 +6,116 @@ include ../../mixins/post
 include ../../mixins/meetup-talk
 include ../../mixins/advertisement
 
-
-//- INTRO
-block intro
-
-	//- HERO
-	if !meetup
-		h2.text-center Bienvenue sur MIAGE Descartes !
-	else
-		article#hero.hero-meetup.hero-meetup--next
-
-			//- Intro
-			section.hero-intro.hero-intro--hasmask
-				.hero-background
-					//-img(src='/images/placeholders/sydney-1.jpg')
-				.hero-intro-content
-					h5.subtitle #{meetup.state == 'active' ? 'Next' : 'Last'} Meetup
-					h1.title= meetup.name
-					p.byline: strong #{meetup._.startDate.format('ddd, DD MMM YYYY')} &#8212; #{meetup._.startDate.format('h:mma')} - #{meetup._.endDate.format('h:mma')}
-					p.byline #{meetup.place} &#8212;
-						a(href='http://maps.google.com.au/?daddr=' + (meetup.map || meetup.place), target='_blank') Directions
-				if meetup.state == 'active'
-					.hero-button
-						if user
-							if meetup.rsvpsAvailable || rsvpStatus.rsvped && rsvpStatus.attending
-								h4.hero-button-title Are you coming?
-									span.text-thin (#{plural(meetup.remainingRSVPs, '* spot left', '* spots left')})
-								include ../../includes/attendance-toggle
-							else
-								.alert.alert-success.mb-0.text-center No more tickets...
-
-						else
-							#next-meetup(data-id=meetup.id)
-								if meetup.rsvpsAvailable
-									a(href='/join', data-from=page.path).btn.btn-primary.btn-lg.btn-block.js-auth-trigger RSVP Now
-										span.text-thin (#{plural(meetup.remainingRSVPs, '* spot left', '* spots left')})
-								else
-									.alert.alert-success.mb-0.text-center No more tickets...
-
-			//- Details
-			section.hero-details: .container
-				.row: .col-sm-10.col-sm-offset-1: .row
-
-					//- Description
-					.col-md-5
-						//- h3.mb-1 The meetup
-						.description!= meetup.description
-
-					//- Talks
-					.col-md-6.col-md-offset-1
-						if meetup.talks.length
-							//- h3.mb-1 The talks
-							.meetup-talks
-								ul.list-unstyled.talks-list
-									each talk in meetup.talks
-										li.talk.row
-											.col-xs-3
-												.talk__speakers
-													if talk.who.length
-														each speaker, i in talk.who
-															img(src=speaker.photo.exists ? speaker._.photo.thumbnail(320,320) : speaker.avatarUrl || '/images/avatar.png', width=160, height=160, alt=speaker.name.full, class=talk.who.length > 1 ? 'talk__photo--mini' : null).talk__photo
-													else
-														img(src='/images/avatar.png', width=160, height=160, alt='There is no speaker...').talk__photo
-												//- if talk.who.length
-													.talkers
-														for photo in talk.who
-															img(src='http://fillmurray.com/100/100').img-circle
-											.col-xs-9
-												.talk-summary
-													h5.title= talk.name
-													p.subtitle.mb-1 by
-														each speaker, i in talk.who
-															if i
-																| ,
-															if speaker.isPublic
-																a(href=speaker.url)=speaker.name.full
-															else
-																=speaker.name.full
-													.summary!= talk.description
-				//- Attending
-				section.attending
-					h3.heading-with-line #{meetup.totalRSVPs} people #{meetup.state == 'active' ? "are attending" : "attended"}
-					ul.list-unstyled.list-inline.text-center.attendees-list
-						for rsvp in meetup.rsvps
-							if rsvp.attending
-								- var attendee = rsvp.who;
-								if attendee.isPublic
-									li: a(href=attendee.url, title=attendee.name.full)
-										img(src=attendee.photo.exists ? attendee._.photo.thumbnail(80,80) : attendee.avatarUrl || '/images/avatar.png', width=40, height=40, alt=attendee.name.full).img-circle
-								else
-									li(title=attendee.name.full): img(src=attendee.photo.exists ? attendee._.photo.thumbnail(80,80) : attendee.avatarUrl || '/images/avatar.png', width=40, height=40, alt=attendee.name.full).img-circle
+//- Css
+block css
+	link(rel='stylesheet', type='text/css', href='//cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css')
 //- BODY
 block content
-	.page-content
-		.home-image
-			img(src='/images/logo.png')
-		//- About
-		article.section.section--featured.home-about: .container
-			h2 Cette page représentera les réalisations des Miagistes Descartes
-			.row: .col-sm-8.col-sm-offset-2
-				p.lead Ou au moins ce qu'on a essayé de faire quoi.
-			if !user
-				.row: .col-sm-4.col-sm-offset-4
-					a(href='/join', data-from=page.path).js-auth-trigger.btn.btn-lg.btn-block.btn-primary.mv-1
-						span.text-caps Join SydJS now
-			p.mt-1
-				a(href='/about') Learn more about SydJS
-				|  &nbsp;&middot;&nbsp;
-				a(href='/members') Find your friends in SydJS
-			p.mt-1: a(href="https://twitter.com/sydjs", class="twitter-follow-button", data-show-count="true", data-size="large") Follow @sydjs
+	head
+		.home-block-intro
+			.home-block-intro-centered
+				h1 Descartes vous attend !
+
+	section.home-block-wrapper
+		.home-icons
+			.home-icon-wrapper
+				h2
+					i(class="fi-heart")
+					br
+					span L'amour
+				p Chez Descartes l'amour des anciens perdurent pour la vie, vous n'y échapperez pas
+			.home-icon-wrapper
+				h2
+					i(class="fi-star")
+					br
+					span Full of stars
+				p Nous le savons tous, les meilleurs sortent de descartes profitez de votre réseau pro pour ne pas les laisser s'échapper
+			.home-icon-wrapper
+				h2
+					i(class="fi-plus")
+					br
+					span Zlatanesque
+				p Les events organiser par le BDE sont complètement Zlatanesque go go au futsal
+		.home-floatclear
+
+	section.home-block-wrapper-img
+		img.home-img.home-float-left(src="/images/home2.jpg")
+		.home-text-with-img.home-float-left
+			h3 Descartes C'est trop bien !
+			p On ne dit pas ça pour plaisanter.
+			| tout les matins vous pouvez faire
+			| votre petit exercice pour monter au
+			| 7eme grâce aux ascenseurs qui ne
+			| fonctionnent pas !
+			| Aussi grâce au super BDE, vous ne vous
+			| embêterez jamais.
+			p C'est dingue !!!???
+
+		.home-floatclear
+
+	section.home-text
+		h3 Un super titre
+		p On ne dit pas ça pour plaisanter.
+		| tout les matins vous pouvez faire
+		| votre petit exercice pour monter au
+		| 7eme grâce aux ascenseurs qui ne
+		| fonctionnent pas !
+		| Aussi grâce au super BDE, vous ne vous
+		| embêterez jamais.
+		| fonctionnent pas !
+		| Aussi grâce au super BDE, vous ne vous
+		| embêterez jamais.
+		| fonctionnent pas !
+		| Aussi grâce au super BDE, vous ne vous
+		| embêterez jamais.
+		| fonctionnent pas !
+		| Aussi grâce au super BDE, vous ne vous
+		| embêterez jamais. vous ne vous
+		| embêterez jamais.
+		| fonctionnent pas !
+		| Aussi grâce au super BDE, vous ne vous
+		| embêterez jamais.
+		| fonctionnent pas !
+		| Aussi grâce au super BDE, vous ne vous
+		| embêterez jamais. vous ne vous
+		| embêterez jamais.
+		| fonctionnent pas !
+		| Aussi grâce au super BDE, vous ne vous
+		| embêterez jamais.
+		| fonctionnent pas !
+		| Aussi grâce au super BDE, vous ne vous
+		| embêterez jamais. vous ne vous
+		| embêterez jamais.
+		| fonctionnent pas !
+		| Aussi grâce au super BDE, vous ne vous
+		| embêterez jamais.
+		| fonctionnent pas !
+		| Aussi grâce au super BDE, vous ne vous
+		| embêterez jamais. vous ne vous
+		| embêterez jamais.
+		| fonctionnent pas !
+		| Aussi grâce au super BDE, vous ne vous
+		| embêterez jamais.
+		| fonctionnent pas !
+		| Aussi grâce au super BDE, vous ne vous
+		| embêterez jamais.
+		| C'est dingue !!!???
+
+	section.home-block-wrapper-img
+		img.home-img.home-float-right(src="/images/home3.jpg")
+		.home-text-with-img.home-float-right
+			h3 Descartes C'est trop bien !
+			p On ne dit pas ça pour plaisanter.
+			| tout les matins vous pouvez faire
+			| votre petit exercice pour monter au
+			| 7eme grâce aux ascenseurs qui ne
+			| fonctionnent pas !
+			| Aussi grâce au super BDE, vous ne vous
+			| embêterez jamais.
+			p C'est dingue !!!???
+
+		.home-floatclear
+
 //- JS
 block js
 	//- twitter
