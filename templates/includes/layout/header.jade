@@ -19,7 +19,6 @@ header(id='header', role='banner', class=(section == 'home' ? 'header--home' : '
 				ul.navbar-nav.navbar-nav--left
 					each link in navLinks
 						li(class=(section == link.key ? 'nav-item-' + link.key + ' active' : 'nav-item-' + link.key)): a(href=link.href)= link.label
-					li: a(href='m2fa-miage-ppd@googlegroups.com') Contact
 				ul.navbar-nav.navbar-nav--right
 					if user
 						li: a(href='/me').user.hidden-xs
@@ -29,6 +28,6 @@ header(id='header', role='banner', class=(section == 'home' ? 'header--home' : '
 							span.visible-xs Sign out
 							span.entypo.entypo-large.entypo-logout.hidden-xs
 					else
-						li: a(href='/signin', data-from=page.path, data-initial='signin').js-auth-trigger Sign in
-						li: a(href='/join', data-from=page.path).js-auth-trigger Join
+						li: a(href='/signin', data-from=page.path, data-initial='signin').js-auth-trigger Se connecter
+						li: a(href='/join', data-from=page.path).js-auth-trigger S'inscrire
 //-.header-placeholder

@@ -30,7 +30,7 @@ h1,.h1,h2,.h2,h3,.h3 { color: @gray-darker; letter-spacing: -0.5px; }
 	h5, .h5 { font-size: 1.2em; }
 	h6, .h6 { font-size: .85em; }
 }
-	
+
  
 @media (max-width: @screen-sm-max) {
 	body { font-size: 95%; }
@@ -149,7 +149,7 @@ cite    { font-style: normal; }
 // Contextual colors
 .text-muted {
 	color: @text-muted;
-	
+
 	a& {
 		color: @text-muted;
 	}
@@ -176,7 +176,7 @@ cite    { font-style: normal; }
 	&a,
 	&.btn-link {
 		color: @gray-light;
-		
+
 		&:hover,
 		&:focus {
 			color: @brand-danger;
@@ -228,11 +228,11 @@ ol {
 // Minidot is a less intrusive bullet style list
 .list-minidot {
 	.list-unstyled();
-	
+
 	li {
 		padding-left: 1.5em;
 		position: relative;
-		
+
 		&:before {
 			content: "\00b7";
 			color: @gray-light;

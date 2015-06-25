@@ -5,10 +5,10 @@ block flash-messages
 
 block intro
 	.page-intro: .container
-		h1.page-title Liste des membres
-		p.lead Annuaire des membres
+		h1.page-title='Annuaire des membres'
 			if !user
-				a(href='/join').js-auth-trigger Add your tile
+				h2
+					a(href='/join').js-auth-trigger Rejoignez-nous!
 
 mixin member(member)
 	- var twitterUsername = member.twitterUsername || (member.twitter ? member.twitter.replace('@', ''): '');

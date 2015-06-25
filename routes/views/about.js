@@ -6,7 +6,7 @@ exports = module.exports = function(req, res) {
 		locals = res.locals;
 
 	locals.section = 'about';
-	locals.page.title = 'About Us';
+	locals.page.title = 'A propos';
 
 	locals.organisers = [
 		{ name: 'Aurélien Chassereau', image: '/images/organiser-craig_sharkie.jpg', twitter: 'Aurelien_Ch',       title: 'Milieu de terrain' },
