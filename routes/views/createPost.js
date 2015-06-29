@@ -11,14 +11,16 @@ exports = module.exports = function(req, res) {
 
 	view.on('post', { action: 'create-post' }, function(next) {
 
+
+
 		// handle form
 		var newPost = new Post.model({
 				author: locals.user.id,
-				publishedDate: new Date()
+				publishedDate: new Date(),
 			}),
 
 			updater = newPost.getUpdateHandler(req, res, {
-				errorMessage: 'There was an error creating your new post:'
+				errorMessage: 'Une erreur est survenue :'
 			});
 
 		// automatically pubish posts by admin users
@@ -35,7 +37,7 @@ exports = module.exports = function(req, res) {
 				locals.validationErrors = err.errors;
 			} else {
 				newPost.notifyAdmins();
-				req.flash('success', 'Your post has been added' + ((newPost.state == 'draft') ? ' and will appear on the site once it\'s been approved' : '') + '.');
+				req.flash('success', 'Votre post a été créé !' + ((newPost.state == 'draft') ? ' and will appear on the site once it\'s been approved' : '') + '.');
 				return res.redirect('/blog/post/' + newPost.slug);
 			}
 			next();
@@ -43,6 +45,6 @@ exports = module.exports = function(req, res) {
 
 	});
 
-	view.render('site/createPost');
+	view.render('site/blog');
 
 }
