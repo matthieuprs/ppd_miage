@@ -60,11 +60,11 @@ block content
 							option(value=i) #{i}
 				hr.mv-2
 				.form-group
-					label.col-sm-2.control-label I have...
+					label.col-sm-2.control-label J'ai...
 					.col-sm-10
 						input(type='text', name='mentoring.have', placeholder='eg; Ruby, Python', value=user.mentoring.have).form-control
 				.form-group
-					label.col-sm-2.control-label I want...
+					label.col-sm-2.control-label J'aimerai...
 					.col-sm-10
 						input(type='text', name='mentoring.want', placeholder='eg; HTML, CSS', value= user.mentoring.want).form-control
 
@@ -143,13 +143,13 @@ block content
 				//- Public Info
 
 				hr.mv-2
-				h3 Public Info
+				h3 Informations publiques
 				.form-group
-					label.col-sm-2 Public
+					label.col-sm-2 Publique
 					.col-sm-10
 						label.checkbox-inline
 							input(type='checkbox', name='isPublic', value='true', checked=user.isPublic ? 'true' : null)
-							|  Show my profile on the SydJS website
+							|  Mon profil est publique
 				.form-group
 					label.col-sm-2.control-label Website
 					.col-sm-10: input(type='text', name='website' value=user.website).form-control
@@ -170,41 +170,41 @@ block content
 						else
 							input(type='file', name='photo_upload')
 				.form-group
-					label.col-sm-2.control-label Mentoring
+					label.col-sm-2.control-label Mentor
 					.col-sm-10
 						.checkbox: label
 							input(type='checkbox', name='mentoring.available', value='true', checked=user.mentoring.available)
-							|  Available as a mentor
+							|  disponible en tant que mentor
 				.mentoring-fields
 					.form-group
 						.col-sm-10.col-sm-offset-2
 							.checkbox: label
 								input(type='checkbox', name='mentoring.free', value='true', checked=user.mentoring.free)
-								|  For Free
+								|  Gratuitement
 							.checkbox: label
 								input(type='checkbox', name='mentoring.paid', value='true', checked=user.mentoring.paid)
-								|  For Payment
+								|  Payant
 							.checkbox: label
 								input(type='checkbox', name='mentoring.swap', value='true', checked=user.mentoring.swap)
-								|  For Swap
+								|  Donant donant
 				hr.mv-2
-				button(type='submit', data-loading-text="Saving...").btn.btn-primary Save profile
+				button(type='submit', data-loading-text="Saving...").btn.btn-primary Sauvegarder
 
 		.ui-reveal
 			.ui-reveal__initial
-				button(type='button').btn.btn-link.ui-reveal__trigger Change Password
+				button(type='button').btn.btn-link.ui-reveal__trigger Changer de mot de passe
 			.ui-reveal__hidden
 				form(method='post', autocomplete='off')
 					input(type='hidden', name='action', value='profile.password')
-					h3 Change password
+					h3 Changer de mot de passe
 					.form-group
-						label(for='change-passwordNew').sr-only New Password
-						input(type='password', name='password', placeholder='New Password', id='change-passwordNew').form-control
+						label(for='change-passwordNew').sr-only Nouveau mot de passe
+						input(type='password', name='password', placeholder='Nouveau mot de passe', id='change-passwordNew').form-control
 					.form-group
-						label(for='change-passwordConfirm').sr-only Confirm Password
-						input(type='password', name='password_confirm', placeholder='Confirm Password', id='signin-passwordConfirm').form-control
+						label(for='change-passwordConfirm').sr-only Confirmation du nouveau mot de passe
+						input(type='password', name='password_confirm', placeholder='Confirmation du nouveau mot de passe', id='signin-passwordConfirm').form-control
 					.form-group
-						button(type='submit', data-loading-text="Changing...").btn.btn-primary Change
+						button(type='submit', data-loading-text="Changing...").btn.btn-primary Changer
 
 block js
 	script(src='/js/views/me.js')
