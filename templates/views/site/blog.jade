@@ -4,6 +4,30 @@ include ../../mixins/post
 
 block js
 	script(src="/js/views/post.js")
+	script(src='http://listjs.com/no-cdn/list.js')
+	script.
+		var options = {
+			valueNames: [ 'name' ]
+		};
+
+		var groupesList = new List('groups-list', options);
+
+	script(src='/js/lib/bootstrap/button.js')
+	script(src='/js/lib/tinymce/tinymce.min.js')
+	script(src='/js/lib/tinymce/jquery.tinymce.min.js')
+	script.
+		jQuery(function($) {
+			$( "#post-title" ).focus();
+				tinymce.init({
+					selector: 'textarea.wysiwyg',
+					menubar: false,
+					height: 400,
+					plugins: [ 'code', 'link' ],
+					toolbar: 'bold italic | alignleft aligncenter alignright | bullist numlist | outdent indent | link | code',
+					skin: 'keystone'
+				});
+			});
+
 
 block intro
 	.page-intro: .container
@@ -14,27 +38,55 @@ block intro
 block content
 
 	.page-content: .container
-			a.button.btn(href="http://localhost:3000/me/create/post").btn.btn-lg.btn-primary Créer un post
-		.row
-			div(class= data.categories.length || !data.posts.length ? 'col-md-10' : 'col-md-10 col-md-offset-1')
-				if filters.category && !data.category
-					h3 Invalid Category.
-				else
-					if data.posts.length
-						.post-cards.row(itemscope itemtype="http://schema.org/Blog")
-							each post in data.posts
-								+post(post)
-					else
-						if data.category
-							h3.text-muted No posts in the category #{data.category.name}.
-						else
-							h3.text-muted There are no posts yet.
+			button.btn.btn-lg.btn-primary(type='button', data-toggle='modal', data-target='#myModal') Créer un post
 
-			if data.categories.length
-				.col-md-2
-					if data.categories.length
-						h5.text-muted Filter by tag
-						ul.list-unstyled.tags-list
-							li: a(href='/blog', class=!data.categories ? 'active' : false) All
-							each tag in data.categories
-								li: a(href='/blog/' + tag.key, class=data.category && data.category.id == tag.id ? 'active' : false).list-group-item= tag.name
+	.filContainer
+		.posts-list
+			if data.posts.length
+				each post in data.posts
+					+post(post)
+			else
+				h3.text-muted There are no posts yet.
+		.groups-list(id='groups-list')
+			H4 Vos abonnements
+			input(class="search" placeholder="Search")
+			//button(class="sort" data-sort="name") Sort by name
+			ul(class="list")
+				if user.groupes
+					each grp in myGroups
+						li
+							p(class="name")
+								a(href='/group/' + grp.name)= grp.name
+		.hottopics
+			h4 Les sujets du moment
+			p JNM 2015 On a gagné !
+			p Inscription M2
+			p Nouveau Master EGAIM
+		.clearFloat
+
+block modal
+	#myModal.modal.fade(role='dialog')
+		.modal-dialog
+			// Modal content
+			.modal-content
+				.modal-header
+					button.close(type='button', data-dismiss='modal') ×
+					h4.modal-title Créer votre post
+				.modal-body
+					form(method='post', enctype='multipart/form-data', autocomplete='off', novalidate, action="/me/create/post").form-horizontal.create-form.profile-form
+						input(type='hidden', name='action', value='create-post')
+						.row: .col-sm-8.col-sm-offset-2
+						.form-group
+							h5 Poster un statut
+							input(type='text', id='post-title', name='title', placeholder='Titre du post').input.input-xl.input-faded
+						.form-group
+							label Contenu du post
+							textarea(name='content.extended', class='wysiwyg').input.input-faded
+						.form-group
+							input(type='text', name='groupes', placeholder='Ajouter un membre et/ou un groupe').input.input-faded-groupe
+
+						//- Submit
+						.form-group
+							button(type='submit', data-loading-text="Envoie ...").btn.btn-lg.btn-primary.btn-block-SubmitPost Envoyer
+				//.modal-footer
+					//button.btn.btn-default(type='button', data-dismiss='modal') Close

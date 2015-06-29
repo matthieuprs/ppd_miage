@@ -2,8 +2,8 @@
 
 $(document).ready(function() {
   var closeHeight = '5em'; /* Default "closed" height */
-	var moreText 	= 'Read More'; /* Default "Read More" text */
-	var lessText	= 'Read Less'; /* Default "Read Less" text */
+	var moreText 	= 'Afficher la suite'; /* Default "Read More" text */
+	var lessText	= 'Réduire'; /* Default "Read Less" text */
 	var duration	= '1000'; /* Animation duration */
   var easing = 'linear'; /* Animation easing option */
 

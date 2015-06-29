@@ -1,6 +1,7 @@
 var keystone = require('keystone'),
 	async = require('async'),
-	Group = keystone.list('Organisation');
+	Group = keystone.list('Organisation'),
+	_= require('underscore');
 
 exports = module.exports = function(req, res) {
   var view = new keystone.View(req, res),
@@ -20,11 +21,26 @@ exports = module.exports = function(req, res) {
 				if (err) return res.err(err);
 				if (!group) return res.notfound('Group not found');
 				locals.group = group;
-				locals.group.populateRelated('posts[author] members',next);
 
+				console.log(_.findIndex(locals.user.groupes, req.params.group.id));
+				if (_.findIndex(locals.user.groupes, req.params.group.id) == -1)
+					locals.isFollowed = false;
+				else {
+					locals.isFollowed = true;
+				}
+
+				locals.group.populateRelated('posts[author groupes] members',next);
 
 			});
+
+
 	});
+
+	/*view.on('post', { action: 'me.abonnement' }, function(next) {
+		keystone.list('User').model.findById(locals.user.id)
+		locals.filters.group
+	});
+	*/
 	view.render('site/group');
 
 }

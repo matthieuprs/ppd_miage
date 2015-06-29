@@ -12,10 +12,10 @@ exports = module.exports = function(req, res) {
   view.on('init', function(next) {
     User.model.findById(locals.user.id)
     .populate('groupes')
-      .exec(function(err, user) {
+      .exec(function(err, res) {
         if (err) return res.err(err);
-        if (!user) return res.notfound('Oops ! we did not successfully find your groups.');
-        locals.myGroups = user.groupes;
+        if (!res) return res.notfound("Oops ! vous n'êtes pas authentifié, il serait peut-être temps !");
+        locals.myGroups = res.groupes;
         next();
     });
 	});
