@@ -9,6 +9,7 @@ var keystone = require('keystone'),
 var Doc = new keystone.List('Doc', {
 	track: true,
 	label: 'Document',
+	defaultSort: '-createdAt',
 	map: { name: 'documentName' }
 });
 
@@ -74,10 +75,15 @@ Doc.add({
 			if (typeof(this.upload.path) != 'undefined')
 				return '/upload/' + this.upload.filename;
 		}
+	},
+	discussion: {
+		type: String,
+		label: 'Comments',
+		hidden: true
 	}
 });
 
-
+//Doc.relationship({ ref: 'DocComment', refPath: 'doc', path: '' });
 
 Doc.defaultColumns = 'documentName, teacher, category, uploadedOn';
 Doc.register();

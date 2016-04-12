@@ -1,7 +1,7 @@
 extends ../../layouts/default
 
 block js
-	script(src="/js/views/post.js")
+	
 
 block intro
 	.page-intro: .container
@@ -13,7 +13,7 @@ block content
 	.row
 		div(class=!data.docs.length ? 'col-md-10' : 'col-md-10 col-md-offset-1')
 				if data.docs.length
-					.post-cards.row(itemscope itemtype="http://schema.org/Blog")
+					.post-cards.row(itemscope itemtype="http://schema.org/Docs")
 						each doc, index in data.docs
 							div#projet
 								.post.type-post.status-publish.format-standard.hentry.category-uncategorized.entry
@@ -38,13 +38,48 @@ block content
 													p.teachers-list Enseignant encadrant :								
 														li 
 															a(href=doc.teacher.url)= doc.teacher.name.full
+
 									.floatclear
 									br
 									br
 									br
-									if doc.upload									
+									if doc.upload
 										a(href=doc.download).alert-link -> Consulter le sujet
+										br
+										a.button.btn(onclick='something()').btn.btn-lg Commentaires
+										div#post
+											.comments
+												- var foo = 0
+												for comment in data.coms
+													if comment.doc.equals(doc.id)
+														if comment.author
+														- foo = foo + 1														
+												h4.mb-1=data.coms.length == 0 ? 'Soyez le premier à commenter' : plural(foo, '* commentaire', '* commentaires')
+												for comment in data.coms
+													if comment.doc.equals(doc.id)														
+														if comment.author
+															.comment.media
+																.pull-left
+																	img(src=user.photo.exists ? user._.photo.thumbnail(60,60) : '/images/placeholders/user-60x60.jpg', alt=user.name.full, width=40, height=40).media-object.img-circle
+																.media-body
+																	h6.mt-0
+																		=user.name.full
+																		span.text-muted  &middot; #{moment(comment.date).fromNow()}
+																	!=comment.content.html
+
+											if user
+											//- Reply form
+											form(method='post').comment-form.mt-5
+												input(type='hidden' name='docId' value='#{doc.id}')
+												input(type='hidden', name='action', value='create-comment-doc')
+												.media
+													.pull-left
+														img(src=user.photo.exists ? user._.photo.thumbnail(60,60) : '/images/placeholders/user-60x60.jpg', alt=user.name.full, width=40, height=40).img-responsive.img-circle
+													.media-body
+														textarea(placeholder='Ajouter votre commentaire...', name='content').form-control
+														.mv-1
+															button(type='submit').btn.btn-success Envoyer										
 									else
 										h3.text-muted Pas de fichiers attachés.
 				else
-					h3.text-muted(style="text-align:center;") Il n'y a pas de sujets.
+					h3.text-muted(style="text-align:center;") Il n'y a pas encore de sujet disponible.
