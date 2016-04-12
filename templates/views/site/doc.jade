@@ -46,15 +46,14 @@ block content
 									if doc.upload
 										a(href=doc.download).alert-link -> Consulter le sujet
 										br
-										a.button.btn(onclick='something()').btn.btn-lg Commentaires
 										div#post
 											.comments
-												- var foo = 0
+												- var cptComment = 0
 												for comment in data.coms
 													if comment.doc.equals(doc.id)
 														if comment.author
-														- foo = foo + 1														
-												h4.mb-1=data.coms.length == 0 ? 'Soyez le premier à commenter' : plural(foo, '* commentaire', '* commentaires')
+														- cptComment = cptComment + 1
+												h4.mb-1=cptComment == 0 ? 'Soyez le premier à commenter !' : plural(cptComment, '* commentaire', '* commentaires')
 												for comment in data.coms
 													if comment.doc.equals(doc.id)														
 														if comment.author
@@ -82,4 +81,4 @@ block content
 									else
 										h3.text-muted Pas de fichiers attachés.
 				else
-					h3.text-muted(style="text-align:center;") Il n'y a pas encore de sujet disponible.
+					h3.text-muted(style="margin-left:28%;") Il n'y a pas encore de sujet disponible pour votre formation.

@@ -30,9 +30,9 @@ Doc.add({
 	category: { 
 		type: Types.Select, 
 		options: [
-    		{ value: 'L3 MIAGE', label: 'L3 MIAGE' },
-    		{ value: 'M1 MIAGE', label: 'M1 MIAGE' },
-    		{ value: 'M2 MIAGE', label: 'M2 MIAGE' }
+    		{ value: 'L3', label: 'L3 MIAGE' },
+    		{ value: 'M1', label: 'M1 MIAGE' },
+    		{ value: 'M2', label: 'M2 MIAGE' }
 		], 
 		label: 'Année', 
 		required: true, 

@@ -19,9 +19,12 @@ exports = module.exports = function(req, res) {
         
     };
 
+    if (!locals.user) return res.notfound("Oops ! Vous n'êtes pas authentifié, il serait peut-être temps !");
+
 	// Chargement documents
 	view.on('init', function(next) {
 		Doc.model.find({})
+		.where('category').equals(locals.user.formation)
 		.sort('createdAt')
 		.populate('teacher students createdBy')
         .exec(function(err, docs){
@@ -44,7 +47,8 @@ exports = module.exports = function(req, res) {
 
 	view.on('post', { action: 'create-comment-doc' }, function(next) {
 		
-		var newDocComment = new DocComment.model({				
+		console.log(locals.user.formation);
+		var newDocComment = new DocComment.model({
 				doc: id,
 				author: locals.user.id
 			}),

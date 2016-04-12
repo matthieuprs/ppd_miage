@@ -20,14 +20,14 @@ exports = module.exports = function(req, res) {
 		//Ajout commentaire pour commit
 		// Load the posts
 
-		if (!locals.user) return res.notfound("Oops ! vous n'êtes pas authentifié, il serait peut-être temps !");
+		if (!locals.user) return res.notfound("Oops ! Vous n'êtes pas authentifié, il serait peut-être temps !");
 
 		view.on('init', function(next) {
 		  User.model.findById(locals.user.id)
 		  .populate('groupes')
 		    .exec(function(err, res) {
 		      if (err) return res.err(err);
-		      if (!res) return res.notfound("Oops ! vous n'êtes pas authentifié, il serait peut-être temps !");
+		      if (!res) return res.notfound("Oops ! Vous n'êtes pas authentifié, il serait peut-être temps !");
 		      locals.myGroups = res.groupes;
 		      next();
 		  });
