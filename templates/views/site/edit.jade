@@ -1,0 +1,36 @@
+extends ../../layouts/default
+
+block intro
+	.page-intro: .container
+		h1.page-title='Modifier mon Post'
+		p.lead
+			| 			
+
+block content
+
+	.filContainer
+		.posts-list
+			
+			form(method='post').form-horizontal.create-form.profile-form
+						input(type='hidden', name='action', value='edit-comment')
+						input(type='hidden', name='postId', value=post.id)
+						.row: .col-sm-8.col-sm-offset-2
+						.form-group
+							h6 Titre du Post
+							input(style='width:60%', type='text', id='post-title', name='title', placeholder='Titre du post', value=post.title).input.input-faded
+						.form-group
+							h6 Contenu du Post
+							textarea(name='content', class='wysiwyg', style='width:80%').input.input-faded
+								|#{post.content.extended}
+						.form-group
+							button(type='submit').btn.btn-success Editer mon Post
+
+		.groups-list(id='groups-list')
+			H4 Vos abonnements				
+								
+		.hottopics
+			h4 Les sujets du moment
+			p JNM 2015 On a gagné !
+			p Inscription M2
+			p Nouveau Master EGAIM
+		.clearFloat
