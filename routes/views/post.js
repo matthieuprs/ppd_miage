@@ -14,6 +14,20 @@ exports = module.exports = function(req, res) {
 		post: req.params.post
 	};
 
+	locals.data = {
+		coms: []
+	};
+
+	//Chargement commentaires
+	view.on('init', function(next) {
+		PostComment.model.find({})
+        .exec(function(err, coms){
+            locals.data.coms = coms;
+            next();
+        });
+	});
+
+
 	view.on('init', function(next) {
 
 		Post.model.findOne()
@@ -28,7 +42,7 @@ exports = module.exports = function(req, res) {
 				if (post.state == 'published' || (req.user && req.user.isAdmin) || (req.user && post.author && (req.user.id == post.author.id))) {
 					locals.post = post;
 					locals.post.populateRelated('comments[author]', next);
-					locals.page.title = post.title + ' - Blog - SydJS';
+					locals.page.title = post.title + ' - Blog - Miage';
 				} else {
 					return res.notfound('Post not found');
 				}
@@ -48,6 +62,11 @@ exports = module.exports = function(req, res) {
 
 	view.on('post', { action: 'create-comment' }, function(next) {
 
+		if (req.body.content == '') {
+			req.flash('error', 'Commentaire vide.');
+			return res.redirect('/blog/post/' + locals.post.slug);
+		}
+		
 		// handle form
 		var newPostComment = new PostComment.model({
 				post: locals.post.id,
@@ -65,7 +84,7 @@ exports = module.exports = function(req, res) {
 			if (err) {
 				locals.validationErrors = err.errors;
 			} else {
-				req.flash('success', 'Votre commentaire a été ajoutée avec succès.');
+				req.flash('success', 'Votre commentaire a été ajouté avec succès.');
 				return res.redirect('/blog/post/' + locals.post.slug);
 			}
 			next();

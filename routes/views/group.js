@@ -3,6 +3,8 @@ var keystone = require('keystone'),
 	Group = keystone.list('Organisation'),
 	_= require('underscore');
 
+var PostComment = keystone.list('PostComment');
+
 exports = module.exports = function(req, res) {
   var view = new keystone.View(req, res),
 		locals = res.locals;
@@ -13,7 +15,20 @@ exports = module.exports = function(req, res) {
 		group: req.params.group
 	};
 
-  view.on('init', function(next) {
+	locals.data = {
+		coms: []
+	};
+
+	//Chargement commentaires
+	view.on('init', function(next) {
+		PostComment.model.find({})
+        .exec(function(err, coms){
+            locals.data.coms = coms;
+            next();
+        });
+	});
+
+  	view.on('init', function(next) {
 		Group.model.findOne()
 			.where('name', locals.filters.group)
 			.populate('author')

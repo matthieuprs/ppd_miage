@@ -2,6 +2,9 @@ var keystone = require('keystone'),
 	async = require('async'),
 	User = keystone.list('User');
 
+var PostComment = keystone.list('PostComment');
+var Group = keystone.list('Organisation');
+
 exports = module.exports = function(req, res) {
 
 	var view = new keystone.View(req, res),
@@ -15,7 +18,9 @@ exports = module.exports = function(req, res) {
 	};
 	locals.data = {
 		posts: [],
-		categories: []
+		categories: [],
+		coms: [],
+		groups: []
 	};
 		//Ajout commentaire pour commit
 		// Load the posts
@@ -41,6 +46,24 @@ exports = module.exports = function(req, res) {
 				locals.data.posts = results;
 				next(err);
 			});
+		});
+
+		//Chargement groupes
+		view.on('init', function(next) {
+			Group.model.find({})
+			.exec(function(err, groups){
+				locals.data.groups = groups;
+				next();
+			});
+		});
+
+		//Chargement commentaires
+		view.on('init', function(next) {
+			PostComment.model.find({})
+	        .exec(function(err, coms){
+	            locals.data.coms = coms;
+	            next();
+	        });
 		});
 
 	// Render the view

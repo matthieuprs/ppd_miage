@@ -2,11 +2,25 @@ mixin post(post)
 	.post.type-post.status-publish.format-standard.hentry.category-uncategorized.entry
 		//.floatclear.groups
 		.entry-author-container
+			
 			a(href=post.author.url): img(src=(post.author.photo.exists ? post.author._.photo.thumbnail(360,360) : post.author.avatarUrl || '/images/avatar.png'), alt=post.author.name.full, width=80, height=80)
 			.entry-author-detail
 				p.entry-author= post.author.name.full
 				p.entry-date= 'Le ' + moment(post.publishedDate).format('D/MM/YYYY')
 				a(href='/blog/post/' + post.slug).alert-link= "Voir la publication"
+				span &nbsp;
+				span &nbsp;
+				span &nbsp;				
+
+				if user.name.full == post.author.name.full
+					a(href='/blog/edit/' + post.slug ).alert-link= "Editer votre publication"
+
+				- var cptComment = 0
+				for comment in data.coms
+					if comment.post.equals(post.id)
+						- cptComment = cptComment + 1
+				h6.mb-1=cptComment == 0 ? 'Soyez le premier à commenter !' : plural(cptComment, '* commentaire', '* commentaires')
+
 			if post.groupes
 				.entry-groups
 					each grp in post.groupes
@@ -14,3 +28,4 @@ mixin post(post)
 						a.entry-line-group(href='/group/' + grp.name)= grp.name
 		.floatclear
 		.entry-content!= post.content.extended
+

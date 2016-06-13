@@ -48,7 +48,7 @@ User.add({
 	adress: { type: Types.Location , label : 'Adresse' },
 	birthDate: { type: Types.Date, label : 'Date de naissance'},
 	lang: { type: Types.Select, label : 'Langue',options: ['fra', 'eng'] },
-	scholar: { type: Types.Textarea , label : 'Parcours scholaire' },
+	scholar: { type: Types.Textarea , label : 'Parcours scolaire' },
 	pro: { type: Types.Textarea , label : 'Parcours professionnel' },
 	competences : {type : Types.Relationship, label : 'Compétences' , ref: 'Competence', many : true}
 }, 'Notifications', {

@@ -38,7 +38,7 @@ block intro
 block content
 
 	.page-content: .container
-			button.btn.btn-lg.btn-primary(type='button', data-toggle='modal', data-target='#myModal') Créer un post
+			button.btn.btn-success(type='button', data-toggle='modal', data-target='#myModal') Créer un post
 
 	.filContainer
 		.posts-list
@@ -83,10 +83,13 @@ block modal
 							label Contenu du post
 							textarea(name='content.extended', class='wysiwyg').input.input-faded
 						.form-group
-							input(type='text', name='groupes', placeholder='Ajouter un membre et/ou un groupe').input.input-faded-groupe
-
+							label Associer un groupe
+							select(id='groups', name='groupes', multiple='multiple').profile-form.input
+								option(value='') Ne pas associer de groupe
+								for group in data.groups								
+									option(value='#{group.id}') #{group.name}
 						//- Submit
 						.form-group
-							button(type='submit', data-loading-text="Envoie ...").btn.btn-lg.btn-primary.btn-block-SubmitPost Envoyer
+							button(type='submit', data-loading-text="Envoie ...").btn.btn.btn-success.btn-block-SubmitPost Envoyer
 				//.modal-footer
 					//button.btn.btn-default(type='button', data-dismiss='modal') Close

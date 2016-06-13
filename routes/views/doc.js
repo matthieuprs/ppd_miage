@@ -15,8 +15,7 @@ exports = module.exports = function(req, res) {
 
     locals.data = {
         docs : [],
-        coms : [],
-        
+        coms : []
     };
 
     if (!locals.user) return res.notfound("Oops ! Vous n'êtes pas authentifié, il serait peut-être temps !");
@@ -65,7 +64,7 @@ exports = module.exports = function(req, res) {
 			if (err) {
 				locals.validationErrors = err.errors;
 			} else {				
-				req.flash('success', 'Your post has been added');
+				req.flash('success', 'Votre commentaire à été ajouté');
 				return res.redirect('/docs/');
 			}
 			next();

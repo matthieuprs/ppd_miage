@@ -11,8 +11,6 @@ exports = module.exports = function(req, res) {
 
 	view.on('post', { action: 'create-post' }, function(next) {
 
-
-
 		// handle form
 		var newPost = new Post.model({
 				author: locals.user.id,
@@ -31,13 +29,13 @@ exports = module.exports = function(req, res) {
 		updater.process(req.body, {
 			flashErrors: true,
 			logErrors: true,
-			fields: 'title, image, content.extended'
+			fields: 'title, image, content.extended, groupes'
 		}, function(err) {
 			if (err) {
 				locals.validationErrors = err.errors;
 			} else {
 				newPost.notifyAdmins();
-				req.flash('success', 'Votre post a été créé !' + ((newPost.state == 'draft') ? ' and will appear on the site once it\'s been approved' : '') + '.');
+				req.flash('success', 'Votre post a été créé !' + ((newPost.state == 'draft') ? ' et apparaîtra lorsqu\'il sera approuvé.' : '') + '.');
 				return res.redirect('/blog/post/' + newPost.slug);
 			}
 			next();

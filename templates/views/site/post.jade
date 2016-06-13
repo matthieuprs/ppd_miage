@@ -2,6 +2,7 @@ extends ../../layouts/default
 
 include ../../mixins/post
 
+
 block content
 	.container-sm
 		if !post
@@ -18,7 +19,7 @@ block content
 				.g-plusone(data-size="medium")
 
 		.comments
-			h4.mb-1=post.comments.length == 0 ? 'Soyez le premier à répondre' : plural(post.comments.length, '* commentaire', '* commentaires')
+			h4.mb-1=post.comments.length == 0 ? 'Soyez le premier à commenter' : plural(post.comments.length, '* commentaire', '* commentaires')
 			for comment in post.comments
 				if comment.author
 					.comment.media
@@ -32,16 +33,22 @@ block content
 
 		if user
 			//- Reply form
-			form(method='post').comment-form.mt-5
+			form(method='post', novalidate).comment-form.mt-5
 				input(type='hidden', name='action', value='create-comment')
 				.media
 					.pull-left
 						img(src=user.photo.exists ? user._.photo.thumbnail(60,60) : '/images/placeholders/user-60x60.jpg', alt=user.name.full, width=40, height=40).img-responsive.img-circle
 					.media-body
-						textarea(placeholder='Ajouter votre commentaire...', name='content').form-control
+						textarea#msg(placeholder='Ajouter votre commentaire...', name='content').form-control
 						.mv-1
-							button(type='submit').btn.btn-success Envoyer
+							button(type='submit').btn.btn-success Commenter
+
 
 block js
 	script(src='/js/common/share.js')
 	script(src="https://apis.google.com/js/plusone.js")
+	script.
+		$('.btn').prop('disabled',true);
+		$('#msg').keyup(function(){
+			$('.btn').prop('disabled', this.value == "" ? true : false);
+		})

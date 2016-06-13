@@ -3,6 +3,11 @@ var _ = require('underscore'),
 	middleware = require('./middleware'),
 	importRoutes = keystone.importer(__dirname);
 
+var passport = require('passport'),
+    passportFacebookStrategy = require('passport-facebook').Strategy;
+
+
+
 // Common Middleware
 keystone.pre('routes', middleware.initErrorHandlers);
 keystone.pre('routes', middleware.initLocals);
@@ -34,6 +39,11 @@ var routes = {
 // Bind Routes
 exports = module.exports = function(app) {
 
+	console.log('Initialize Passport...');
+	app.use(passport.initialize());
+	app.use(passport.session());
+	console.log('Initialize Passport...OK');
+
 	// Allow cross-domain requests (development only)
 	if (process.env.NODE_ENV != 'production') {
 		console.log('------------------------------------------------');
@@ -60,6 +70,7 @@ exports = module.exports = function(app) {
 	app.all('/links/link/:link', routes.views.link);
 	app.get('/blog/:category?', routes.views.blog);
 	app.all('/blog/post/:post', routes.views.post);
+	app.all('/blog/edit/:post', routes.views.edit);
 	app.get('/about', routes.views.about);
 	app.get('/mentoring', routes.views.mentoring);
 	app.all('/group/:group?', routes.views.group);
@@ -80,6 +91,14 @@ exports = module.exports = function(app) {
 	app.all('/auth/confirm', routes.auth.confirm);
 	app.all('/auth/app', routes.auth.app);
 	app.all('/auth/:service', routes.auth.service);
+	app.get('/auth/facebook/callback', 
+		passport.authenticate('facebook', 
+			{ session: false },
+	        function(err, data, info) {
+	        	console.log(data);
+	        	//regarder si le profil id existe deja, sinon le rajouter dans le user qui vient d'être créé
+	        })
+		);
 
 	// User
 	app.all('/me*', middleware.requireUser);

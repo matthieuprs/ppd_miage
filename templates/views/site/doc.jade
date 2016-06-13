@@ -1,7 +1,11 @@
 extends ../../layouts/default
 
 block js
-	
+	script.		
+		$('.btn').prop('disabled',true);
+		$('#msg').keyup(function(){
+			$('.btn').prop('disabled', this.value == "" ? true : false);
+		})
 
 block intro
 	.page-intro: .container
@@ -75,9 +79,9 @@ block content
 													.pull-left
 														img(src=user.photo.exists ? user._.photo.thumbnail(60,60) : '/images/placeholders/user-60x60.jpg', alt=user.name.full, width=40, height=40).img-responsive.img-circle
 													.media-body
-														textarea(placeholder='Ajouter votre commentaire...', name='content').form-control
+														textarea#msg(placeholder='Ajouter votre commentaire...', name='content').form-control
 														.mv-1
-															button(type='submit').btn.btn-success Envoyer										
+															button(type='submit').btn.btn-success Commenter										
 									else
 										h3.text-muted Pas de fichiers attachés.
 				else
