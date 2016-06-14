@@ -11,9 +11,11 @@ mixin organisation(org)
 		.col-sm-9.col-md-8
 			h2.org__heading
 				if org.website
-					a(href=org.website, target='_blank')= org.name
+					a(href=org.website, target='_blank')= org.name					
 				else
 					= org.name
+			h4.org__link
+				a(href='/group/' + org.name).alert-link= "Consulter les post"
 			if org.location.serialised
 				h4.org__location
 					span.org__location-icon.entypo.entypo-location

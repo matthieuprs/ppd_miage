@@ -18,7 +18,10 @@ header(id='header', role='banner', class=(section == 'home' ? 'header--home' : '
 			nav(role='navigation')
 				ul.navbar-nav.navbar-nav--left
 					each link in navLinks
-						li(class=(section == link.key ? 'nav-item-' + link.key + ' active' : 'nav-item-' + link.key)): a(href=link.href)= link.label
+						if link.key == 'adam'
+							li(class=(section == link.key ? 'nav-item-' + link.key + ' active' : 'nav-item-' + link.key)): a(href=link.href, target='_blank')= link.label
+						else
+							li(class=(section == link.key ? 'nav-item-' + link.key + ' active' : 'nav-item-' + link.key)): a(href=link.href)= link.label
 				ul.navbar-nav.navbar-nav--right
 					if user
 						li: a(href='/me').user.hidden-xs

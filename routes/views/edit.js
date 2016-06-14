@@ -42,8 +42,7 @@ exports = module.exports = function(req, res) {
 
 	view.on('post', { action: 'edit-comment' }, function(next) {
 
-		// handle form
-		console.log(req.body.postId);		
+		// handle form		
 		Post.model.findOne()
 			.where('_id', req.body.postId)
 			.exec(function(err, post) {

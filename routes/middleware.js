@@ -26,7 +26,7 @@ exports.initLocals = function(req, res, next) {
 	locals.basedir = keystone.get('basedir');
 
 	locals.page = {
-		title: 'Miage',
+		title: 'MiageConnect',
 		path: req.url.split("?")[0] // strip the query - handy for redirecting back to the page
 	};
 
@@ -117,7 +117,7 @@ exports.flashMessages = function(req, res, next) {
 exports.requireUser = function(req, res, next) {
 
 	if (!req.user) {
-		req.flash('error', 'Please sign in to access this page.');
+		req.flash('error', 'Veuillez vous authentifier pour accéder à cette page.');
 		res.redirect('/signin');
 	} else {
 		next();

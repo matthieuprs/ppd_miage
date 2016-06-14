@@ -51,14 +51,14 @@ block content
 
 				hr.mv-2
 				h3 Education
-				strong.col-sm-2.control-label Type
-				.col-sm-10: select(type='type', name='type' ).form-control
-					each i in ['Professeur', 'Etudiant','Ancien']
-						if i == user.type
-							option(value=i selected) #{i}
-						else
-							option(value=i) #{i}
-				hr.mv-2
+				.form-group
+					strong.col-sm-2.control-label Type
+					.col-sm-10: select(type='type', name='type' ).form-control
+						each i in ['Etudiant', 'Ancien']
+							if i == user.type
+								option(value=i selected) #{i}
+							else
+								option(value=i) #{i}				
 				.form-group
 					label.col-sm-2.control-label J'ai...
 					.col-sm-10
@@ -156,7 +156,7 @@ block content
 				.form-group
 					label.col-sm-2.control-label Bio
 						br
-						.text-muted (markdown)
+						.text-muted
 					.col-sm-10
 						textarea(name='bio', rows=5).form-control=user.bio.md
 
@@ -174,7 +174,7 @@ block content
 					.col-sm-10
 						.checkbox: label
 							input(type='checkbox', name='mentoring.available', value='true', checked=user.mentoring.available)
-							|  disponible en tant que mentor
+							|  Disponible en tant que mentor
 				.mentoring-fields
 					.form-group
 						.col-sm-10.col-sm-offset-2
