@@ -32,7 +32,8 @@ keystone.init({
 	'emails': 'templates/emails',
 
 	'auto update': true,
-	'mongo': process.env.MONGO_URI || 'mongodb://miage2015:DXR746sru@ds033469.mongolab.com:33469/mymongodb',
+	//'mongo': process.env.MONGO_URI || 'mongodb://miage2015:DXR746sru@ds033469.mongolab.com:33469/mymongodb', //mongodb dev
+	'mongo': process.env.MONGO_URI || 'mongodb://localhost:27017/local',
 
 	'session': true,
 	'session store': 'mongo',

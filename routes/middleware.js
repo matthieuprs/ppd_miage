@@ -17,7 +17,7 @@ exports.initLocals = function(req, res, next) {
 		{ label: 'Histoire',		key: 'meetups',		href: '/meetups' },
 		{ label: 'Membres',		key: 'members',		href: '/members' },
 		{ label: 'Fil d\'actus',		key: 'blog',		href: '/blog' },
-		{ label: 'Calendrier',	key: 'calendar',	href: '/calendar' },
+		{ label: 'Calendrier',	key: 'calendar',	href: 'http://127.0.0.1/calendrier/web/' },
 		{ label: 'Docs',		key:'docs',			href:'/docs'}
 	];
 
